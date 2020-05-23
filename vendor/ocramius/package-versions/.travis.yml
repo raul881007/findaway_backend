@@ -1,0 +1,30 @@
+language: php
+
+sudo: false
+
+php:
+  - 7.1
+  - 7.2
+  - 7.3
+  - 7.4snapshot
+
+env:
+  - DEPENDENCIES=""
+  - DEPENDENCIES="--prefer-lowest --prefer-stable"
+  - DEPENDENCIES="--classmap-authoritative"
+  - DEPENDENCIES="--no-scripts"
+
+before_script:
+  # aliasing current branch as `master`, since otherwise composer cannot determine the current branch-alias
+  - git branch -D master || true
+  - git checkout -b master
+  - composer self-update
+  - composer update --prefer-dist $DEPENDENCIES
+
+script:
+  - ./vendor/bin/phpunit --disallow-test-output --coverage-clover ./clover.xml
+  - if [[ $TRAVIS_PHP_VERSION = '7.1' && $DEPENDENCIES = '' ]]; then ./vendor/bin/infection; fi
+  - if [[ $TRAVIS_PHP_VERSION = '7.1' && $DEPENDENCIES = '' ]]; then ./vendor/bin/phpcs; fi
+
+after_script:
+  - sh .travis.coverage.sh

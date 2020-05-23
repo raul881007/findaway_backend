@@ -1,0 +1,56 @@
+<?php //subresource_operations_7721abade379d98334eb29b7fec1f56a
+
+return [PHP_INT_MAX, [
+    'api_members_n_goals_get_subresource' => [
+        'property' => 'nGoals',
+        'collection' => true,
+        'resource_class' => 'App\\Entity\\NGoals',
+        'shortNames' => [
+            'NGoals',
+            'Member',
+        ],
+        'identifiers' => [
+            [
+                'id',
+                'App\\Entity\\Member',
+                true,
+            ],
+        ],
+        'operation_name' => 'n_goals_get_subresource',
+        'route_name' => 'api_members_n_goals_get_subresource',
+        'path' => '/members/{id}/n_goals.{_format}',
+        'defaults' => [],
+        'requirements' => [],
+        'options' => [],
+        'host' => '',
+        'schemes' => [],
+        'condition' => '',
+        'controller' => null,
+    ],
+    'api_members_n_tasks_get_subresource' => [
+        'property' => 'nTask',
+        'collection' => true,
+        'resource_class' => 'App\\Entity\\NTask',
+        'shortNames' => [
+            'NTask',
+            'Member',
+        ],
+        'identifiers' => [
+            [
+                'id',
+                'App\\Entity\\Member',
+                true,
+            ],
+        ],
+        'operation_name' => 'n_tasks_get_subresource',
+        'route_name' => 'api_members_n_tasks_get_subresource',
+        'path' => '/members/{id}/n_tasks.{_format}',
+        'defaults' => [],
+        'requirements' => [],
+        'options' => [],
+        'host' => '',
+        'schemes' => [],
+        'condition' => '',
+        'controller' => null,
+    ],
+]];

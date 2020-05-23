@@ -1,0 +1,8 @@
+[2020-04-30T23:09:55.904266+00:00] name.WARNING: An exception has been thrown during the rendering of a template ("Catchable Fatal Error: Object of class App\Entity\Partner could not be converted to string"). [] []
+[2020-04-30T23:09:55.905040+00:00] name.WARNING: http://localhost:3000/token/partner/login/8c478feffe185475eb6269f3ff6064566451969e0d5ef42e72e39bb0ec60f322 [] []
+[2020-05-01T12:01:17.341434+00:00] name.WARNING: An exception has been thrown during the rendering of a template ("Catchable Fatal Error: Object of class App\Entity\Partner could not be converted to string"). [] []
+[2020-05-01T12:01:17.342182+00:00] name.WARNING: http://localhost:3000/token/partner/login/40915473b85cf984205d961d2e01cf1c245e0068f6104628dad67b8d7cefa8fb [] []
+[2020-05-01T15:47:45.809034+00:00] name.WARNING: An exception has been thrown during the rendering of a template ("Catchable Fatal Error: Object of class App\Entity\Partner could not be converted to string"). [] []
+[2020-05-01T15:47:45.828944+00:00] name.WARNING: http://localhost:3000/token/partner/login/b1019d9d82a0b6065518c93bb983fa15de671bbe87632a44de7c4a75bc7e7646 [] []
+[2020-05-03T12:29:25.664643+00:00] name.WARNING: Unable to find template "Resources/emails/signup.html.twig" (looked into: E:\nginx\html\backend/templates, E:\nginx\html\backend\vendor\symfony\twig-bridge/Resources/views/Form). [] []
+[2020-05-03T12:29:25.681762+00:00] name.WARNING: http://localhost:3000/token/member/login/56cc7aa462791200fd7337a907313eb61cf1804cfe871b12f8fb975a88603846 [] []

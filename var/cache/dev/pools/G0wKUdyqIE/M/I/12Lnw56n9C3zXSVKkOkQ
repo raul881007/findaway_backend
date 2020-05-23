@@ -1,0 +1,196 @@
+<?php //%255BApp%255CEntity%255CPartner%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Table'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Table')),
+        clone ($p['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
+        clone ($p['Symfony\\Bridge\\Doctrine\\Validator\\Constraints\\UniqueEntity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Bridge\\Doctrine\\Validator\\Constraints\\UniqueEntity')),
+        clone ($p['ApiPlatform\\Core\\Annotation\\ApiResource'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiResource')),
+        clone ($p['ApiPlatform\\Core\\Annotation\\ApiFilter'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiFilter')),
+        clone $p['ApiPlatform\\Core\\Annotation\\ApiFilter'],
+        clone $p['ApiPlatform\\Core\\Annotation\\ApiFilter'],
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'partner',
+            ],
+            'repositoryClass' => [
+                1 => 'App\\Repository\\PartnerRepository',
+            ],
+            'message' => [
+                2 => 'Email already exists',
+            ],
+            'fields' => [
+                2 => [
+                    'username',
+                ],
+            ],
+            'errorPath' => [
+                2 => 'email',
+            ],
+            'groups' => [
+                2 => [
+                    'Default',
+                ],
+            ],
+            'collectionOperations' => [
+                3 => [
+                    'get' => [
+                        'normalization_context' => [
+                            'groups' => [
+                                'partner_read_collection',
+                                'read',
+                                'is_active_read',
+                            ],
+                        ],
+                        'access_control' => 'is_granted(\'ROLE_PARTNER_LIST\')',
+                    ],
+                    'post' => [
+                        'access_control' => 'is_granted(\'ROLE_PARTNER_CREATE\')',
+                    ],
+                    'signup' => [
+                        'method' => 'POST',
+                        'path' => '/frontend/partner/signup',
+                        'denormalization_context' => [
+                            'groups' => [
+                                'signup_collection',
+                            ],
+                        ],
+                        'controller' => 'App\\Controller\\Partner\\PartnerSignupPostCollectionController',
+                        'defaults' => [
+                            '_api_receive' => true,
+                        ],
+                    ],
+                    'signupMov' => [
+                        'method' => 'POST',
+                        'path' => '/frontend/partner/signup-mov',
+                        'denormalization_context' => [
+                            'groups' => [
+                                'signup_collection',
+                            ],
+                        ],
+                        'controller' => 'App\\Controller\\Partner\\PartnerSignupMovPostCollectionController',
+                        'defaults' => [
+                            '_api_receive' => true,
+                        ],
+                    ],
+                ],
+            ],
+            'itemOperations' => [
+                3 => [
+                    'get' => [
+                        'access_control' => 'is_granted(\'ROLE_PARTNER_SHOW\')',
+                    ],
+                    'put' => [
+                        'access_control' => 'is_granted(\'ROLE_PARTNER_UPDATE\')',
+                    ],
+                    'delete' => [
+                        'access_control' => 'is_granted(\'ROLE_PARTNER_DELETE\')',
+                    ],
+                    'partnerGet' => [
+                        'access_control' => 'is_granted(\'ROLE_PARTNER\')',
+                        'method' => 'GET',
+                        'path' => '/frontend/partner/profile/me',
+                        'normalization_context' => [
+                            'groups' => [
+                                'partner_get_item',
+                            ],
+                        ],
+                        'controller' => 'App\\Controller\\Partner\\PartnerGetItemAction',
+                        'defaults' => [
+                            '_api_receive' => false,
+                        ],
+                    ],
+                    'partnerPut' => [
+                        'access_control' => 'is_granted(\'ROLE_PARTNER\')',
+                        'method' => 'PUT',
+                        'path' => '/frontend/partner/profile/me',
+                        'normalization_context' => [
+                            'groups' => [
+                                'partner_put_item',
+                            ],
+                        ],
+                        'controller' => 'App\\Controller\\Partner\\PartnerPutItemController',
+                        'defaults' => [
+                            '_api_receive' => false,
+                        ],
+                    ],
+                    'loginByToken' => [
+                        'method' => 'GET',
+                        'path' => '/frontend/partner/login/{token}',
+                        'controller' => 'App\\Controller\\Partner\\PartnerLoginByTokenCollectionAction',
+                        'defaults' => [
+                            '_api_receive' => false,
+                        ],
+                    ],
+                    'remindPassword' => [
+                        'method' => 'POST',
+                        'path' => '/frontend/partner/remind/password',
+                        'controller' => 'App\\Controller\\Partner\\PartnerRemindPasswordCollectionController',
+                        'defaults' => [
+                            '_api_receive' => false,
+                        ],
+                    ],
+                ],
+            ],
+            'attributes' => [
+                3 => [
+                    'normalization_context' => [
+                        'groups' => [
+                            'partner_read',
+                            'read',
+                            'is_active_read',
+                        ],
+                    ],
+                    'denormalization_context' => [
+                        'groups' => [
+                            'partner_write',
+                            'is_active_write',
+                        ],
+                    ],
+                    'order' => [
+                        'id' => 'DESC',
+                    ],
+                ],
+            ],
+            'filterClass' => [
+                4 => 'ApiPlatform\\Core\\Bridge\\Doctrine\\Orm\\Filter\\DateFilter',
+                'ApiPlatform\\Core\\Bridge\\Doctrine\\Orm\\Filter\\SearchFilter',
+                'ApiPlatform\\Core\\Bridge\\Doctrine\\Orm\\Filter\\OrderFilter',
+            ],
+            'properties' => [
+                4 => [
+                    'createdAt',
+                    'updatedAt',
+                ],
+                [
+                    'id' => 'exact',
+                    'firstname' => 'ipartial',
+                    'lastname' => 'ipartial',
+                    'email' => 'exact',
+                    'phone' => 'ipartial',
+                ],
+                [
+                    'id',
+                    'firstname',
+                    'email',
+                    'description',
+                    'createdAt',
+                    'updatedAt',
+                ],
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[1],
+        $o[2],
+        $o[3],
+        $o[4],
+        $o[5],
+        $o[6],
+    ],
+    []
+); }];
