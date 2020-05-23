@@ -1,0 +1,57 @@
+parameters:
+    # Adds a fallback VARNISH_URL if the env var is not set.
+    # This allows you to run cache:warmup even if your
+    # environment variables are not available yet.
+    # You should not need to change this value.
+    env(VARNISH_URL): ''
+
+api_platform:
+    mapping:
+        paths: ['%kernel.project_dir%/src/Entity']
+    title: Findaway
+    version: v1.0
+    collection:
+        pagination:
+            client_items_per_page: true
+            client_enabled: true
+
+    eager_loading:
+        # To enable or disable eager loading.
+        enabled: true
+
+        # Fetch only partial data according to serialization groups.
+        # If enabled, Doctrine ORM entities will not work as expected if any of the other fields are used.
+        fetch_partial: false
+
+        # Max number of joined relations before EagerLoading throws a RuntimeException.
+        max_joins: 100
+
+        # Force join on every relation.
+        # If disabled, it will only join relations having the EAGER fetch mode.
+        force_eager: true
+
+    exception_to_status:
+        # The 4 following handlers are registered by default, keep those lines to prevent unexpected side effects
+        Symfony\Component\Serializer\Exception\ExceptionInterface: 400 # Use a raw status code (recommended)
+        ApiPlatform\Core\Exception\InvalidArgumentException: 'HTTP_BAD_REQUEST' # Or a `Symfony\Component\HttpFoundation\Response`'s constant
+        ApiPlatform\Core\Exception\FilterValidationException: 400
+        Doctrine\ORM\OptimisticLockException: 409
+
+        # Custom mapping
+        App\Exception\EntityRemoveException: 409
+
+    # Enable the Varnish integration
+#    http_cache:
+#        invalidation:
+#            enabled: true
+#            varnish_urls: ['%env(VARNISH_URL)%']
+#        max_age: 0
+#        shared_max_age: 3600
+#        vary: ['Content-Type', 'Authorization']
+#        public: true
+
+    swagger:
+        api_keys:
+            apiKey:
+                name: Authorization
+                type: header

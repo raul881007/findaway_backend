@@ -1,0 +1,68 @@
+services:
+#    product.fixtures:
+#        class: App\DataFixtures\ProductFixtures
+#        tags: ['doctrine.fixture.orm']
+#        arguments:
+#            - "@faker.generator"
+
+    available.fixtures:
+        class: App\DataFixtures\AvailableFixtures
+        tags: ['doctrine.fixture.orm']
+
+    compliment.fixtures:
+        class: App\DataFixtures\ComplimentFixtures
+        tags: ['doctrine.fixture.orm']
+
+    days.fixtures:
+        class: App\DataFixtures\DaysFixtures
+        tags: ['doctrine.fixture.orm']
+
+    feedback.fixtures:
+        class: App\DataFixtures\FeedbackFixtures
+        tags: ['doctrine.fixture.orm']
+
+    levelurgency.fixtures:
+        class: App\DataFixtures\LevelUrgencyFixtures
+        tags: ['doctrine.fixture.orm']
+
+    personalitystyle.fixtures:
+        class: App\DataFixtures\PersonalityStyleFixtures
+        tags: ['doctrine.fixture.orm']
+
+    preferredtime.fixtures:
+        class: App\DataFixtures\PreferredTimeFixtures
+        tags: ['doctrine.fixture.orm']
+
+    specicoutcome.fixtures:
+        class: App\DataFixtures\SpecicOutcomeFixtures
+        tags: ['doctrine.fixture.orm']
+
+    goals.fixtures:
+        class: App\DataFixtures\GoalsFixtures
+        tags: ['doctrine.fixture.orm']
+
+    task.fixtures:
+        class: App\DataFixtures\TaskFixtures
+        tags: ['doctrine.fixture.orm']
+
+    role.fixtures:
+        class: App\DataFixtures\RoleFixtures
+        tags: ['doctrine.fixture.orm']
+
+    user.fixtures:
+        class: App\DataFixtures\UserFixtures
+        tags: ['doctrine.fixture.orm']
+        arguments:
+            - "@security.user_password_encoder.generic"
+
+#    member.fixtures:
+#        class: App\DataFixtures\MemberFixtures
+#        tags: ['doctrine.fixture.orm']
+#        arguments:
+#            - "@security.user_password_encoder.generic"
+
+#    partner.fixtures:
+#        class: App\DataFixtures\PartnerFixtures
+#        tags: ['doctrine.fixture.orm']
+#        arguments:
+#            - "@security.user_password_encoder.generic"

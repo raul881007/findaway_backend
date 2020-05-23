@@ -1,0 +1,138 @@
+security:
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+
+        App\Entity\Client:
+            algorithm: bcrypt
+
+        App\Entity\Member:
+            algorithm: bcrypt
+
+        App\Entity\Partner:
+            algorithm: bcrypt
+
+        App\Entity\Supervisor:
+            algorithm: bcrypt
+
+    providers:
+        db_provider:
+            entity:
+                class: App\Entity\User
+                property: username
+
+        chain_provider:
+            chain:
+                providers: [member_provider, partner_provider, supervisor_provider]
+
+        member_provider:
+            entity:
+                class: App\Entity\Member
+                property: username
+
+        partner_provider:
+            entity:
+                class: App\Entity\Partner
+                property: username
+
+        supervisor_provider:
+            entity:
+                class: App\Entity\Supervisor
+                property: username
+
+        client_provider:
+            entity:
+                class: App\Entity\Client
+                property: username
+
+    firewalls:
+        login:
+            pattern:  ^/login
+            user_checker: App\Security\UserChecker
+            stateless: true
+            anonymous: true
+            provider: db_provider
+            json_login:
+                check_path: /login
+                username_path: username
+                password_path: password
+                require_previous_session: false
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+
+        client_login:
+            pattern:  ^/frontend/login
+            stateless: true
+            anonymous: true
+            provider: chain_provider
+            json_login:
+                check_path: /frontend/login
+                username_path: username
+                password_path: password
+                require_previous_session: false
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+
+        frontend_member:
+            pattern:   ^/frontend/member/profile
+            provider: member_provider
+            stateless: true
+            anonymous: false
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+
+        frontend_partner:
+            pattern:   ^/frontend/partner/profile
+            provider: partner_provider
+            stateless: true
+            anonymous: false
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+
+        frontend_supervisor:
+            pattern:   ^/frontend/supervisor/profile
+            provider: supervisor_provider
+            stateless: true
+            anonymous: false
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+
+        frontend:
+            pattern:   ^/frontend
+            provider: chain_provider
+            anonymous: true
+
+        docs:
+            pattern:   ^/docs
+            user_checker: App\Security\UserChecker
+            provider: db_provider
+            stateless: true
+            anonymous: false
+            http_basic: ~
+
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        api:
+            pattern:   ^/
+            user_checker: App\Security\UserChecker
+            provider: db_provider
+            stateless: true
+            anonymous: false
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
+
+    access_control:
+        - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/frontend/profile, role: ROLE_CLIENT }
+        - { path: ^/frontend/member/profile, role: ROLE_MEMBER }
+        - { path: ^/frontend/partner/profile, role: ROLE_PARTNER }
+        - { path: ^/frontend/supervisor/profile, role: ROLE_SUPERVISOR }
+        - { path: ^/frontend, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: [ ROLE_USER ] }
