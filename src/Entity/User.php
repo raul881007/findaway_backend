@@ -199,11 +199,23 @@ class User implements \Serializable, UserInterface
     private $googleCalendarId;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\MemberNotifications", mappedBy="user")
+     * @Groups({
+     *     "user_read",
+     *     "user_write"
+     * })
+     * @ORM\OrderBy({"id" = "ASC"})
+     * @Assert\Valid()
+     */
+    private $memberNotification;
+
+    /**
      * User constructor.
      */
     public function __construct()
     {
         $this->groups = new ArrayCollection();
+        $this->memberNotification = new ArrayCollection();
     }
 
     public function getUsername()
@@ -420,6 +432,37 @@ class User implements \Serializable, UserInterface
     public function setGoogleCalendarId(?string $googleCalendarId): self
     {
         $this->googleCalendarId = $googleCalendarId;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MemberNotifications[]
+     */
+    public function getMemberNotification(): Collection
+    {
+        return $this->memberNotification;
+    }
+
+    public function addMemberNotification(MemberNotifications $memberNotification): self
+    {
+        if (!$this->memberNotification->contains($memberNotification)) {
+            $this->memberNotification[] = $memberNotification;
+            $memberNotification->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMemberNotification(MemberNotifications $memberNotification): self
+    {
+        if ($this->memberNotification->contains($memberNotification)) {
+            $this->memberNotification->removeElement($memberNotification);
+            // set the owning side to null (unless already changed)
+            if ($memberNotification->getUser() === $this) {
+                $memberNotification->setUser(null);
+            }
+        }
 
         return $this;
     }

@@ -364,8 +364,24 @@ class Member implements MemberInterface, SearchInterface, UserInterface
      * })
      */
     private $nPersonalityStyle;
-    
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Partner", inversedBy="members")
+     * @Groups({"member_read", "member_write", "member_read_collection", "task_read"})
+     * @ApiSubresource()
+     */
+    private $partner;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\MemberNotifications", mappedBy="member")
+     * @Groups({
+     *     "member_read",
+     *     "member_read_collection",
+     * })
+     * @ORM\OrderBy({"id" = "ASC"})
+     * @Assert\Valid()
+     */
+    private $memberNotification;
 
     /**
      * Member constructor.
@@ -379,6 +395,7 @@ class Member implements MemberInterface, SearchInterface, UserInterface
         $this->nGoals = new \Doctrine\Common\Collections\ArrayCollection();
         $this->nTask = new \Doctrine\Common\Collections\ArrayCollection();
         $this->password = \bin2hex(\random_bytes(32));
+        $this->memberNotification = new ArrayCollection();
     }
 
     /**
@@ -722,6 +739,48 @@ class Member implements MemberInterface, SearchInterface, UserInterface
         return $this;
     }
 
+    public function getPartner(): ?Partner
+    {
+        return $this->partner;
+    }
+
+    public function setPartner(?Partner $partner): self
+    {
+        $this->partner = $partner;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MemberNotifications[]
+     */
+    public function getMemberNotification(): Collection
+    {
+        return $this->memberNotification;
+    }
+
+    public function addMemberNotification(MemberNotifications $memberNotification): self
+    {
+        if (!$this->memberNotification->contains($memberNotification)) {
+            $this->memberNotification[] = $memberNotification;
+            $memberNotification->setMember($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMemberNotification(MemberNotifications $memberNotification): self
+    {
+        if ($this->memberNotification->contains($memberNotification)) {
+            $this->memberNotification->removeElement($memberNotification);
+            // set the owning side to null (unless already changed)
+            if ($memberNotification->getMember() === $this) {
+                $memberNotification->setMember(null);
+            }
+        }
+
+        return $this;
+    }
 
 
 }

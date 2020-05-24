@@ -269,6 +269,16 @@ class Supervisor implements SupervisorInterface, SearchInterface, UserInterface
      */
     private $language;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\MemberNotifications", mappedBy="supervisor")
+     * @Groups({
+     *     "supervisor_read",
+     *     "supervisor_read_collection",
+     * })
+     * @ORM\OrderBy({"id" = "ASC"})
+     * @Assert\Valid()
+     */
+    private $memberNotification;
 
     /**
      * Supervisor constructor.
@@ -278,6 +288,7 @@ class Supervisor implements SupervisorInterface, SearchInterface, UserInterface
     {
         $this->supervisors = new ArrayCollection();
         $this->password = \bin2hex(\random_bytes(32));
+        $this->memberNotification = new ArrayCollection();
     }
 
     /**
@@ -459,6 +470,37 @@ class Supervisor implements SupervisorInterface, SearchInterface, UserInterface
     public function setLanguage(Language $language): self
     {
         $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MemberNotifications[]
+     */
+    public function getMemberNotification(): Collection
+    {
+        return $this->memberNotification;
+    }
+
+    public function addMemberNotification(MemberNotifications $memberNotification): self
+    {
+        if (!$this->memberNotification->contains($memberNotification)) {
+            $this->memberNotification[] = $memberNotification;
+            $memberNotification->setSupervisor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMemberNotification(MemberNotifications $memberNotification): self
+    {
+        if ($this->memberNotification->contains($memberNotification)) {
+            $this->memberNotification->removeElement($memberNotification);
+            // set the owning side to null (unless already changed)
+            if ($memberNotification->getSupervisor() === $this) {
+                $memberNotification->setSupervisor(null);
+            }
+        }
 
         return $this;
     }

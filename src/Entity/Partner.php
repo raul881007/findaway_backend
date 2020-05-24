@@ -309,6 +309,17 @@ class Partner implements PartnerInterface, SearchInterface, UserInterface
     private $ratings;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\MemberNotifications", mappedBy="partner")
+     * @Groups({
+     *     "partner_read",
+     *     "partner_read_collection",
+     * })
+     * @ORM\OrderBy({"id" = "ASC"})
+     * @Assert\Valid()
+     */
+    private $memberNotification;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\NAvailable")
      * @Groups({
      *     "partner_read",
@@ -346,6 +357,7 @@ class Partner implements PartnerInterface, SearchInterface, UserInterface
         $this->password = \bin2hex(\random_bytes(32));
         $this->ratings = new \Doctrine\Common\Collections\ArrayCollection();
         $this->members = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->memberNotification = new ArrayCollection();
     }
 
     /**
@@ -623,6 +635,37 @@ class Partner implements PartnerInterface, SearchInterface, UserInterface
             // set the owning side to null (unless already changed)
             if ($member->getPartner() === $this) {
                 $member->setPartner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MemberNotifications[]
+     */
+    public function getMemberNotification(): Collection
+    {
+        return $this->memberNotification;
+    }
+
+    public function addMemberNotification(MemberNotifications $memberNotification): self
+    {
+        if (!$this->memberNotification->contains($memberNotification)) {
+            $this->memberNotification[] = $memberNotification;
+            $memberNotification->setPartner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMemberNotification(MemberNotifications $memberNotification): self
+    {
+        if ($this->memberNotification->contains($memberNotification)) {
+            $this->memberNotification->removeElement($memberNotification);
+            // set the owning side to null (unless already changed)
+            if ($memberNotification->getPartner() === $this) {
+                $memberNotification->setPartner(null);
             }
         }
 
