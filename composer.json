@@ -8,7 +8,7 @@
         "api-platform/api-pack": "^1.2",
         "doctrine/doctrine-fixtures-bundle": "^3.3",
         "doctrine/doctrine-migrations-bundle": "^2.1",
-        "elasticsearch/elasticsaaaaearch": "6.0",
+        "elasticsearch/elasticsearch": "6.0",
         "gesdinet/jwt-refresh-token-bundle": "^0.9",
         "google/apiclient": "^2.4",
         "guzzlehttp/guzzle": "^6.5",
