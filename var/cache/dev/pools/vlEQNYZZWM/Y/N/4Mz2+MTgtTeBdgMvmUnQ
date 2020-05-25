@@ -1,3 +1,0 @@
-<?php //route_name_9e2278cda9d07e283722f90802c356e7
-
-return [PHP_INT_MAX, 'api_n_tasks_get_collection'];

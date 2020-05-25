@@ -1,3 +1,0 @@
-<?php //route_name_f8184921032393e6fb65d0d53efbec97
-
-return [PHP_INT_MAX, 'api_n_goals_get_collection'];

@@ -1,3 +1,0 @@
-<?php //route_name_9afb70e0e5761c26c770344727266596
-
-return [PHP_INT_MAX, 'api_member_goals_get_item'];

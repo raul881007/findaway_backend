@@ -1,3 +1,0 @@
-<?php //route_name_2fb3ba37fb48802b22b37ede56708ac1
-
-return [PHP_INT_MAX, 'api_n_goals_translations_get_item'];

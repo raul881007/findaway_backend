@@ -1,3 +1,0 @@
-<?php //route_name_45614192453307866b8829a279cd26ae
-
-return [PHP_INT_MAX, 'api_languages_get_collection'];
