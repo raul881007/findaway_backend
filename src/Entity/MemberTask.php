@@ -110,6 +110,25 @@ class MemberTask
      * @Assert\NotBlank()
      */
     private $member;
+    
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({
+     *     "is_active_read",
+     *     "is_active_write"
+     * })
+     */
+    protected $isCompleted = false;
+    
+     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({
+     *     "is_active_read",
+     *     "is_active_write"
+     * })
+     */
+    protected $isFuture = false;
+
 
     public function getId(): ?int
     {
@@ -139,6 +158,31 @@ class MemberTask
 
         return $this;
     }
+    
+     public function getIsCompleted(): ?bool
+    {
+        return $this->isCompleted;
+    }
+
+    public function setIsCompleted(bool $isCompleted): self
+    {
+        $this->isCompleted = $isCompleted;
+
+        return $this;
+    }
+    
+     public function getIsFuture(): ?bool
+    {
+        return $this->isFuture;
+    }
+
+    public function setIsFuture(bool $isFuture): self
+    {
+        $this->isFuture = $isFuture;
+
+        return $this;
+    }
+
 
 
 }

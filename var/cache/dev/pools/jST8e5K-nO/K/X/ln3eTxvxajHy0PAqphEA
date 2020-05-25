@@ -1,0 +1,124 @@
+<?php //%255BApp%255CEntity%255CNCompliment%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Table'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Table')),
+        clone ($p['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
+        clone ($p['ApiPlatform\\Core\\Annotation\\ApiResource'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiResource')),
+        clone ($p['ApiPlatform\\Core\\Annotation\\ApiFilter'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiFilter')),
+        clone $p['ApiPlatform\\Core\\Annotation\\ApiFilter'],
+        clone $p['ApiPlatform\\Core\\Annotation\\ApiFilter'],
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'ncompliment',
+            ],
+            'repositoryClass' => [
+                1 => 'App\\Repository\\NComplimentRepository',
+            ],
+            'collectionOperations' => [
+                2 => [
+                    'get' => [
+                        'access_control' => 'is_granted(\'ROLE_N_COMPLIMENT_LIST\')',
+                    ],
+                    'post' => [
+                        'access_control' => 'is_granted(\'ROLE_N_COMPLIMENT_CREATE\')',
+                    ],
+                    'frontend' => [
+                        'method' => 'GET',
+                        'path' => '/frontend/ncompliment',
+                        'controller' => 'App\\Controller\\NCompliment\\NComplimentFrontendGetCollectionAction',
+                        'defaults' => [
+                            '_api_receive' => false,
+                        ],
+                        'normalization_context' => [
+                            'groups' => [
+                                'ncompliment_read_frontend',
+                                'slug',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'itemOperations' => [
+                2 => [
+                    'get' => [
+                        'access_control' => 'is_granted(\'ROLE_N_COMPLIMENT_SHOW\')',
+                    ],
+                    'put' => [
+                        'access_control' => 'is_granted(\'ROLE_N_COMPLIMENT_UPDATE\')',
+                    ],
+                    'delete' => [
+                        'access_control' => 'is_granted(\'ROLE_N_COMPLIMENT_DELETE\')',
+                    ],
+                    'frontend' => [
+                        'method' => 'GET',
+                        'path' => '/frontend/ncompliment/{slug}',
+                        'controller' => 'App\\Controller\\NCompliment\\NComplimentFrontendGetItemAction',
+                        'defaults' => [
+                            '_api_receive' => false,
+                        ],
+                        'normalization_context' => [
+                            'groups' => [
+                                'ncompliment_read_frontend',
+                                'slug',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+            'attributes' => [
+                2 => [
+                    'normalization_context' => [
+                        'groups' => [
+                            'ncompliment_read',
+                            'read',
+                            'is_active_read',
+                        ],
+                    ],
+                    'denormalization_context' => [
+                        'groups' => [
+                            'ncompliment_write',
+                            'is_active_write',
+                        ],
+                    ],
+                    'order' => [
+                        'id' => 'DESC',
+                    ],
+                ],
+            ],
+            'filterClass' => [
+                3 => 'ApiPlatform\\Core\\Bridge\\Doctrine\\Orm\\Filter\\DateFilter',
+                'ApiPlatform\\Core\\Bridge\\Doctrine\\Orm\\Filter\\SearchFilter',
+                'ApiPlatform\\Core\\Bridge\\Doctrine\\Orm\\Filter\\OrderFilter',
+            ],
+            'properties' => [
+                3 => [
+                    'createdAt',
+                    'updatedAt',
+                ],
+                [
+                    'id' => 'exact',
+                    'translations.name' => 'ipartial',
+                ],
+                [
+                    'id',
+                    'translations.name',
+                    'createdAt',
+                    'updatedAt',
+                ],
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[1],
+        $o[2],
+        $o[3],
+        $o[4],
+        $o[5],
+    ],
+    []
+); }];

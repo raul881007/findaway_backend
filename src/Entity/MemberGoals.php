@@ -109,6 +109,16 @@ class MemberGoals
      * })
      */
     private $member;
+    
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({
+     *     "is_active_read",
+     *     "is_active_write"
+     * })
+     */
+    protected $isCompleted = false;
+
 
     public function getId(): ?int
     {
@@ -135,6 +145,18 @@ class MemberGoals
     public function setMember(?Member $member): self
     {
         $this->member = $member;
+
+        return $this;
+    }
+    
+      public function getIsCompleted(): ?bool
+    {
+        return $this->isCompleted;
+    }
+
+    public function setIsCompleted(bool $isCompleted): self
+    {
+        $this->isCompleted = $isCompleted;
 
         return $this;
     }
