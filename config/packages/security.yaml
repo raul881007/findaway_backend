@@ -15,6 +15,12 @@ security:
 
         App\Entity\Supervisor:
             algorithm: bcrypt
+            
+            # http://symfony.com/doc/current/book/security.html#hierarchical-roles
+    role_hierarchy:
+        ROLE_ADMIN:       [ROLE_USER]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_USER:        [ROLE_MEMBER, ROLE_PARTNER]
 
     providers:
         db_provider:
@@ -82,6 +88,15 @@ security:
             guard:
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator
+        
+        frontend_members:
+            pattern:   ^/frontend/members
+            provider: member_provider
+            stateless: true
+            anonymous: false
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
 
         frontend_partner:
             pattern:   ^/frontend/partner/profile
@@ -127,11 +142,16 @@ security:
             guard:
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator
+            
+                
 
     access_control:
         - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/frontend/profile, role: ROLE_CLIENT }
         - { path: ^/frontend/member/profile, role: ROLE_MEMBER }
+        - { path: ^/frontend/members, roles: ROLE_MEMBER }
+        - { path: ^/frontend/partners, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/frontend/supervisors, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/frontend/partner/profile, role: ROLE_PARTNER }
         - { path: ^/frontend/supervisor/profile, role: ROLE_SUPERVISOR }
         - { path: ^/frontend, role: IS_AUTHENTICATED_ANONYMOUSLY }

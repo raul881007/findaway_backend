@@ -109,13 +109,24 @@ class NTask implements TranslatableInterface
      * @Groups({
      *     "ntask_read",
      *     "ntask_write",
-     *     "ntask_read_frontend"
+     *     "ntask_read_frontend",
+     *	   "ngoals_read",
+     *     "ngoals_write",
+     *     "ngoals_read_frontend"
      * })
      * @ORM\OrderBy({"id" = "ASC"})
      * @Assert\Valid()
      * @Assert\Count(min=1)
      */
     private $translations;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\NGoals", inversedBy="tasks")
+     * 
+     */
+    protected $ngoal;
+    
+    
 
     public function __construct()
     {
@@ -145,6 +156,20 @@ class NTask implements TranslatableInterface
         return $this;
     }
 
+
+	public function getNGoal(): NGoals
+    {
+        return $this->ngoal;
+    }
+
+    public function setNGoal(NGoals $ngoal): self
+    {
+        $this->ngoal = $ngoal;
+
+        return $this;
+    }
+    
+    
     public function removeTranslation(NTaskTranslation $translation): self
     {
         if ($this->translations->contains($translation)) {

@@ -53,20 +53,26 @@ class MemberSignupMovPostCollectionController extends BaseUserController
         $validator->validate($data, ['groups' => 'signup']);
         $em->persist($data);
         if (isset($params->memberGoals)) {
+	        $order=1;
             foreach ($params->memberGoals as $mgoals) {
                 $membergoals = new MemberGoals();
                 $membergoals->setName($mgoals);
+                $membergoals->setOrder($order);
                 $em->persist($membergoals);
                 $data->addMemberGoal($membergoals);
+                $order++;
             }
         }
 
         if (isset($params->memberTask)) {
+            $order=1;
             foreach ($params->memberTask as $mtasks) {
                 $membertasks = new MemberTask();
                 $membertasks->setName($mtasks);
+                $membertasks->setOrder($order);
                 $em->persist($membertasks);
                 $data->addMemberTask($membertasks);
+                $order++;
             }
         }
 

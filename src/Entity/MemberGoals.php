@@ -26,7 +26,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
  *     attributes={
  *          "normalization_context"={"groups"={"member_goals_read", "read", "is_active_read"}},
  *          "denormalization_context"={"groups"={"member_goals_write", "is_active_write"}},
- *          "order"={"id": "DESC"}
+ *          "order"={"order": "ASC"}
  *     },
  *     collectionOperations={
  *          "get"={
@@ -34,7 +34,17 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
  *          },
  *          "post"={
  *              "access_control"="is_granted('ROLE_MEMBER_GOALS_CREATE')"
- *          }
+ *          },
+ 			"addGoal"={
+ *              "access_control"="is_granted('ROLE_MEMBER')",
+ *              "method"="POST",
+ *              "path"="/frontend/member/profile/goal/add",
+ *              "denormalization_context"={
+ *                  "groups"={"member_get_item"}
+ *              },
+ *              "controller"=MemberAddTaskAction::class,
+ *              "defaults"={"_api_receive"=true},
+ *          },
  *     },
  *     itemOperations={
  *          "get"={
@@ -80,6 +90,7 @@ class MemberGoals
      *     "member_goals_read",
      *     "member_read",
      *     "user_read",
+     *     "member_get_item",
      *     "user_write"
      * })
      */
@@ -94,6 +105,7 @@ class MemberGoals
      *     "member_goals_write",
      *     "user_read",
      *     "project_read",
+     *     "member_get_item",
      *     "project_write"
      * })
      * @Assert\NotBlank()
@@ -105,6 +117,7 @@ class MemberGoals
      * @Groups({
      *     "member_goals_read",
      *     "member_goals_write",
+     *     "member_get_item",
      *     "user_read"
      * })
      */
@@ -114,10 +127,23 @@ class MemberGoals
      * @ORM\Column(type="boolean", nullable=true)
      * @Groups({
      *     "is_active_read",
+     *     "member_get_item",
      *     "is_active_write"
      * })
      */
     protected $isCompleted = false;
+    
+      /**
+     * @var integer
+     *
+     * @ORM\Column(name="order_goal", type="integer",nullable = true)
+     * @Groups({
+     *     "is_active_read",
+     *     "member_get_item",
+     *     "is_active_write"
+     * })
+     */
+    private $ordergoal;
 
 
     public function getId(): ?int
@@ -157,6 +183,18 @@ class MemberGoals
     public function setIsCompleted(bool $isCompleted): self
     {
         $this->isCompleted = $isCompleted;
+
+        return $this;
+    }
+    
+       public function getOrderGoal(): ?int
+    {
+        return $this->ordergoal;
+    }
+
+    public function setOrderGoal(int $ordergoal): self
+    {
+        $this->ordergoal = $ordergoal;
 
         return $this;
     }

@@ -117,6 +117,19 @@ class NGoals implements TranslatableInterface
      * @Assert\Count(min=1)
      */
     private $translations;
+    
+     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\NTask", mappedBy="ngoal", cascade={"persist"}, orphanRemoval=true)
+     * @Groups({
+     *     "ngoals_read",
+     *     "ngoals_write",
+     *     "ngoals_read_frontend"
+     * })
+     * @ORM\OrderBy({"id" = "ASC"})
+     * @Assert\Valid()
+     * @Assert\Count(min=1)
+     */
+    private $tasks;
 
     public function __construct()
     {
@@ -127,6 +140,38 @@ class NGoals implements TranslatableInterface
     {
         return $this->id;
     }
+    
+    /**
+     * @return Collection|NTask[]
+     */
+    public function getTasks(): Collection
+    {
+        return $this->tasks;
+    }
+    
+    public function addTask(NTask $task): self
+    {
+        if (!$this->tasks->contains($task)) {
+            $this->tasks[] = $task;
+            $task->setNGoal($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTask(NTask $task): self
+    {
+        if ($this->tasks->contains($task)) {
+            $this->tasks->removeElement($task);
+            // set the owning side to null (unless already changed)
+            if ($task->getNGoal() === $this) {
+                $task->setNGoal(null);
+            }
+        }
+
+        return $this;
+    }
+
 
     /**
      * @return Collection|NGoalsTranslation[]

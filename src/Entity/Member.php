@@ -49,6 +49,17 @@ use App\Controller\SearchAction;
  *          "post"={
  *              "access_control"="is_granted('ROLE_MEMBER_CREATE')"
  *          },
+ * 			"memberGet"={
+ *              "access_control"="is_granted('ROLE_MEMBER')",
+ *              "method"="GET",
+ *              "path"="/frontend/member/profile/me",
+ *              "normalization_context"={
+ *                  "groups"={"member_get_item"}
+ *              },
+ *              "controller"=MemberGetItemAction::class,
+ *              "defaults"={"_api_receive"=false},
+ *          },
+ 
  *          "signup"={
  *              "method"="POST",
  *              "path"="/frontend/member/signup",
@@ -87,16 +98,7 @@ use App\Controller\SearchAction;
  *          "delete"={
  *              "access_control"="is_granted('ROLE_MEMBER_DELETE')"
  *          },
- *          "memberGet"={
- *              "access_control"="is_granted('ROLE_MEMBER')",
- *              "method"="GET",
- *              "path"="/frontend/member/profile/me",
- *              "normalization_context"={
- *                  "groups"={"member_get_item"}
- *              },
- *              "controller"=MemberGetItemAction::class,
- *              "defaults"={"_api_receive"=false},
- *          },
+ *         
  *          "memberPut"={
  *              "access_control"="is_granted('ROLE_MEMBER')",
  *              "method"="PUT",
@@ -173,6 +175,7 @@ class Member implements MemberInterface, SearchInterface, UserInterface
      *     "member_read",
      *     "member_read_collection",
      *     "member_write",
+     *	   "member_get_notification",
      *     "task_read",
      *     "member_get_item",
      *     "member_put_item",
@@ -192,6 +195,7 @@ class Member implements MemberInterface, SearchInterface, UserInterface
      *     "member_read_collection",
      *     "member_write",
      *     "task_read",
+     *	   "member_get_notification",
      *     "member_get_item",
      *     "member_put_item",
      *     "signup_collection",
@@ -288,6 +292,7 @@ class Member implements MemberInterface, SearchInterface, UserInterface
      * @Groups({
      *     "member_read",
      *     "member_write",
+     *     "member_get_item",
      *     "member_read_collection",
      * })
      */
@@ -298,20 +303,34 @@ class Member implements MemberInterface, SearchInterface, UserInterface
      * @Groups({
      *     "document_read",
      *     "member_read",
-     *     "member_write"
+     *     "member_write",
+     *     "member_get_item"
+     * })
+     * @ORM\OrderBy({"ordergoal" = "ASC"})
+     */
+    private $memberGoals;
+    
+      /**
+     * @ORM\OneToMany(targetEntity="App\Entity\MemberAvailability", mappedBy="member", cascade={"persist"})
+     * @Groups({
+     *     "document_read",
+     *     "member_read",
+     *     "member_write",
+	 *     "member_get_item"
      * })
      * @ORM\OrderBy({"id" = "ASC"})
      */
-    private $memberGoals;
+    private $memberAvailability;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\MemberTask", mappedBy="member", cascade={"persist"})
      * @Groups({
      *     "document_read",
      *     "member_read",
+     *     "member_get_item",
      *     "member_write"
      * })
-     * @ORM\OrderBy({"id" = "ASC"})
+     * @ORM\OrderBy({"ordertask" = "ASC"})
      */
     private $memberTask;
 
@@ -324,6 +343,7 @@ class Member implements MemberInterface, SearchInterface, UserInterface
      * @Groups({
      *     "document_read",
      *     "member_read",
+     *     "member_get_item",
      *     "member_write"
      * })
      * @ORM\OrderBy({"id" = "ASC"})
@@ -340,6 +360,7 @@ class Member implements MemberInterface, SearchInterface, UserInterface
      * @Groups({
      *     "document_read",
      *     "member_read",
+     *     "member_get_item",
      *     "member_write"
      * })
      * @ORM\OrderBy({"id" = "ASC"})
@@ -351,6 +372,7 @@ class Member implements MemberInterface, SearchInterface, UserInterface
      * @ORM\ManyToOne(targetEntity="App\Entity\NAvailable")
      * @Groups({
      *     "member_read",
+     *     "member_get_item",
      *     "member_write"
      * })
      */
@@ -360,6 +382,7 @@ class Member implements MemberInterface, SearchInterface, UserInterface
      * @ORM\ManyToOne(targetEntity="App\Entity\NPersonalityStyle")
      * @Groups({
      *     "member_read",
+     *     "member_get_item",
      *     "member_write"
      * })
      */
@@ -377,6 +400,7 @@ class Member implements MemberInterface, SearchInterface, UserInterface
      * @Groups({
      *     "member_read",
      *     "member_read_collection",
+	 *     "member_get_item",
      * })
      * @ORM\OrderBy({"id" = "ASC"})
      * @Assert\Valid()
@@ -392,6 +416,7 @@ class Member implements MemberInterface, SearchInterface, UserInterface
         $this->members = new ArrayCollection();
         $this->memberGoals = new ArrayCollection();
         $this->memberTask = new ArrayCollection();
+        $this->memberNotification = new ArrayCollection();
         $this->nGoals = new \Doctrine\Common\Collections\ArrayCollection();
         $this->nTask = new \Doctrine\Common\Collections\ArrayCollection();
         $this->password = \bin2hex(\random_bytes(32));

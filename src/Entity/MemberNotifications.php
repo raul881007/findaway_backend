@@ -16,6 +16,9 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 
+
+use App\Controller\Member\MemberGetNotificationAction;
+
 /**
  * MemberNotifications
  *
@@ -28,23 +31,40 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
  *          "order"={"id": "ASC"}
  *     },
  *     collectionOperations={
- *          "get"={
- *              "access_control"="is_granted('ROLE_MEMBER_NOTIFICATIONS_LIST')"
+ *         "get"={
+ *              "normalization_context"={
+ *                  "groups"={"member_read_collection", "read", "is_active_read"}
+ *              },
+ *              "access_control"="is_granted('ROLE_MEMBER_LIST')"
  *          },
  *          "post"={
- *              "access_control"="is_granted('ROLE_MEMBER_NOTIFICATIONS_CREATE')"
- *          }
+ *              "access_control"="is_granted('ROLE_MEMBER_CREATE')"
+ *          },
+		    
  *     },
  *     itemOperations={
  *          "get"={
- *              "access_control"="is_granted('ROLE_MEMBER_NOTIFICATIONS_SHOW')"
+ *              "access_control"="is_granted('ROLE_MEMBER_SHOW')"
  *          },
  *          "put"={
- *              "access_control"="is_granted('ROLE_MEMBER_NOTIFICATIONS_UPDATE')"
+ *              "access_control"="is_granted('ROLE_MEMBER_UPDATE')"
  *          },
  *          "delete"={
- *              "access_control"="is_granted('ROLE_MEMBER_NOTIFICATIONS_DELETE')"
- *          }
+ *              "access_control"="is_granted('ROLE_MEMBER_DELETE')"
+ *          },
+ 			"notificationGet"={
+ *              "access_control"="is_granted('ROLE_MEMBER')",
+ *              "method"="GET",
+ *              "path"="/frontend/members/notifications",
+ *              "normalization_context"={
+ *                  "groups"={"member_get_item"}
+ *              },
+ *              "controller"=MemberGetNotificationAction::class,
+ *              "defaults"={"_api_receive"=false},
+ *          },
+ 
+ 			
+ 			
  *     })
  * @ApiFilter(DateFilter::class, properties={"createdAt", "updatedAt"})
  * @ApiFilter(SearchFilter::class, properties={
@@ -78,6 +98,7 @@ class MemberNotifications
      * @Groups({
      *     "member_notification_read",
      *     "member_notification_write",
+	 *     "member_get_notification",
      *     "member_read",
      *     "partner_read",
      * })

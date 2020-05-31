@@ -112,4 +112,29 @@ SQL
         return $stmt->fetchAll();
     }
 
+
+ 	//Get members notifications 
+    public function getMembersNotifications()
+    {
+        $connection = $this->getEntityManager()->getConnection();
+
+        $query = "SELECT * from public.member where email=:email";
+        $params = array('email'=>$email);
+        //$stmt = $connection->prepare($query);
+        //$stmt->execute($params);
+        $stmt = $connection->prepare($query);
+        $stmt->execute($params);
+        return $stmt->fetchAll();
+    }
+    
+     public function findNotifications($member_id)
+	 {
+    	 $qb = $this
+        	 ->createQueryBuilder('m')
+         	->select('m,mn')
+         	->join('m.memberNotification', 'mn')
+         	->where('m.id = :memberId')
+            ->setParameter('memberId', $member_id);
+	     return $qb->getQuery()->getArrayResult();
+	 }
 }

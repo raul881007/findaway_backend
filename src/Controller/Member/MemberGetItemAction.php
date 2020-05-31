@@ -13,6 +13,7 @@ class MemberGetItemAction
 {
     /**
      * @param UserInterface $member
+	 * @param EntityManagerInterface $em
      * @return Member|null
      */
     public function __invoke(UserInterface $member): ?Member

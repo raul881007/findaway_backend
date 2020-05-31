@@ -18,6 +18,8 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 
+use App\Controller\Member\MemberAddTaskAction;
+
 /**
  * MemberTask
  *
@@ -26,7 +28,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
  *     attributes={
  *          "normalization_context"={"groups"={"member_task_read", "read", "is_active_read"}},
  *          "denormalization_context"={"groups"={"member_task_write", "is_active_write"}},
- *          "order"={"id": "DESC"}
+ *          "order"={"order": "ASC"}
  *     },
  *     collectionOperations={
  *          "get"={
@@ -34,7 +36,17 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
  *          },
  *          "post"={
  *              "access_control"="is_granted('ROLE_MEMBER_TASK_CREATE')"
- *          }
+ *          },
+ *			"addTask"={
+ *              "access_control"="is_granted('ROLE_MEMBER')",
+ *              "method"="POST",
+ *              "path"="/frontend/member/profile/task/add",
+ *              "denormalization_context"={
+ *                  "groups"={"member_get_item"}
+ *              },
+ *              "controller"=MemberAddTaskAction::class,
+ *              "defaults"={"_api_receive"=true},
+ *          },
  *     },
  *     itemOperations={
  *          "get"={
@@ -80,6 +92,7 @@ class MemberTask
      *     "member_task_read",
      *     "member_read",
      *     "user_read",
+     *     "member_get_item",
      *     "user_write"
      * })
      */
@@ -94,6 +107,7 @@ class MemberTask
      *     "member_task_write",
      *     "user_read",
      *     "project_read",
+     *     "member_get_item",
      *     "project_write"
      * })
      * @Assert\NotBlank()
@@ -105,6 +119,7 @@ class MemberTask
      * @Groups({
      *     "member_task_read",
      *     "member_task_write",
+     *     "member_get_item",
      *     "user_read"
      * })
      * @Assert\NotBlank()
@@ -115,19 +130,23 @@ class MemberTask
      * @ORM\Column(type="boolean", nullable=true)
      * @Groups({
      *     "is_active_read",
+     *     "member_get_item",
      *     "is_active_write"
      * })
      */
     protected $isCompleted = false;
     
      /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @var integer
+     *
+     * @ORM\Column(name="order_task", type="integer",nullable = true)
      * @Groups({
      *     "is_active_read",
+     *     "member_get_item",
      *     "is_active_write"
      * })
      */
-    protected $isFuture = false;
+    private $ordertask;
 
 
     public function getId(): ?int
@@ -171,14 +190,14 @@ class MemberTask
         return $this;
     }
     
-     public function getIsFuture(): ?bool
+     public function getOrderTask(): ?int
     {
-        return $this->isFuture;
+        return $this->ordertask;
     }
 
-    public function setIsFuture(bool $isFuture): self
+    public function setOrderTask(int $ordertask): self
     {
-        $this->isFuture = $isFuture;
+        $this->ordertask = $ordertask;
 
         return $this;
     }

@@ -118,7 +118,10 @@ class NTaskTranslation
      *     "ntask_write",
      *     "member_read",
      *     "user_read",
-     *     "ntask_read_frontend"
+     *     "ntask_read_frontend",
+     *	   "ngoals_read",
+     *     "ngoals_write",
+     *     "ngoals_read_frontend"
      * })
      * @Assert\NotBlank()
      */
