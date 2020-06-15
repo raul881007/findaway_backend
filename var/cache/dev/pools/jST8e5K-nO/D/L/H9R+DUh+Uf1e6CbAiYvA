@@ -22,6 +22,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             'groups' => [
                 1 => [
                     'is_active_read',
+                    'member_goals_read',
                     'member_get_item',
                     'is_active_write',
                 ],

@@ -5,6 +5,7 @@ namespace App\Controller\Member;
 use ApiPlatform\Core\Validator\ValidatorInterface;
 use App\Controller\User\BaseUserController;
 use App\Entity\Member;
+use App\Entity\Partner;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,6 +41,11 @@ class MemberPutItemController extends BaseUserController
 
             if (isset($params->plainPassword)) {
                 $data->setPlainPassword($params->plainPassword);
+            }
+            
+            if (isset($params->partnerId)) {
+                $partner = $em->getRepository(Partner::class)->find($params->partnerId);
+                $data->setPartner($partner);
             }
 
             $this->encodePassword($data);

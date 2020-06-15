@@ -1,0 +1,135 @@
+<?php //%255BApp%255CEntity%255CMemberProjects%255D%255B1%255D
+
+return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+    $o = [
+        clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['ApiPlatform\\Core\\Annotation\\ApiResource'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiResource')),
+        clone ($p['ApiPlatform\\Core\\Annotation\\ApiFilter'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('ApiPlatform\\Core\\Annotation\\ApiFilter')),
+        clone $p['ApiPlatform\\Core\\Annotation\\ApiFilter'],
+        clone $p['ApiPlatform\\Core\\Annotation\\ApiFilter'],
+        clone ($p['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'collectionOperations' => [
+                [
+                    'get' => [
+                        'access_control' => 'is_granted(\'ROLE_MEMBER_PROJECTS_LIST\')',
+                    ],
+                    'post' => [
+                        'access_control' => 'is_granted(\'ROLE_MEMBER_PROJECTS_CREATE\')',
+                    ],
+                    'addProject' => [
+                        'access_control' => 'is_granted(\'ROLE_MEMBER\')',
+                        'method' => 'POST',
+                        'path' => '/frontend/member/profile/project/add',
+                        'denormalization_context' => [
+                            'groups' => [
+                                'member_projects_read',
+                            ],
+                        ],
+                        'controller' => 'App\\Controller\\Member\\MemberAddProjectAction',
+                        'defaults' => [
+                            '_api_receive' => true,
+                        ],
+                    ],
+                    'addPartnerToMemberProject' => [
+                        'access_control' => 'is_granted(\'ROLE_PARTNER\')',
+                        'method' => 'POST',
+                        'path' => '/frontend/partner/profile/project/add',
+                        'denormalization_context' => [
+                            'groups' => [
+                                'member_get_item',
+                            ],
+                        ],
+                        'controller' => 'App\\Controller\\Partner\\PartnerAddMemberProjectAction',
+                        'defaults' => [
+                            '_api_receive' => true,
+                        ],
+                    ],
+                ],
+            ],
+            'itemOperations' => [
+                [
+                    'get' => [
+                        'access_control' => 'is_granted(\'ROLE_MEMBER_PROJECTS_SHOW\')',
+                    ],
+                    'put' => [
+                        'access_control' => 'is_granted(\'ROLE_MEMBER_PROJECTS_UPDATE\')',
+                    ],
+                    'delete' => [
+                        'access_control' => 'is_granted(\'ROLE_MEMBER_PROJECTS_DELETE\')',
+                    ],
+                    'memberPutProject' => [
+                        'access_control' => 'is_granted(\'ROLE_MEMBER\')',
+                        'method' => 'PUT',
+                        'path' => '/frontend/member/profile/project/update',
+                        'normalization_context' => [
+                            'groups' => [
+                                'member_put_project',
+                            ],
+                        ],
+                        'controller' => 'App\\Controller\\Member\\MemberPutProjectAction',
+                        'defaults' => [
+                            '_api_receive' => false,
+                        ],
+                    ],
+                ],
+            ],
+            'attributes' => [
+                [
+                    'normalization_context' => [
+                        'groups' => [
+                            'member_projects_read',
+                            'read',
+                            'is_active_read',
+                        ],
+                    ],
+                    'denormalization_context' => [
+                        'groups' => [
+                            'member_projects_write',
+                            'is_active_write',
+                        ],
+                    ],
+                    'order' => [
+                        'order' => 'ASC',
+                    ],
+                ],
+            ],
+            'filterClass' => [
+                1 => 'ApiPlatform\\Core\\Bridge\\Doctrine\\Orm\\Filter\\DateFilter',
+                'ApiPlatform\\Core\\Bridge\\Doctrine\\Orm\\Filter\\SearchFilter',
+                'ApiPlatform\\Core\\Bridge\\Doctrine\\Orm\\Filter\\OrderFilter',
+            ],
+            'properties' => [
+                1 => [
+                    'createdAt',
+                    'updatedAt',
+                ],
+                [
+                    'id' => 'exact',
+                    'member.name' => 'ipartial',
+                    'name' => 'ipartial',
+                ],
+                [
+                    'id',
+                    'member.name',
+                    'name',
+                    'createdAt',
+                    'updatedAt',
+                ],
+            ],
+            'repositoryClass' => [
+                4 => 'App\\Repository\\MemberProjectsRepository',
+            ],
+        ],
+    ],
+    [
+        $o[0],
+        $o[1],
+        $o[2],
+        $o[3],
+        $o[4],
+    ],
+    []
+); }];

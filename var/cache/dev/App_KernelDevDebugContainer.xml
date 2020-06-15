@@ -825,6 +825,22 @@
         <argument type="service" id=".service_locator.pNNo5z3.App\Controller\Member\MemberActionController"/>
       </call>
     </service>
+    <service id="App\Controller\Member\MemberAddGoalAction" class="App\Controller\Member\MemberAddGoalAction" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="security.user_password_encoder.generic"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.pNNo5z3.App\Controller\Member\MemberAddGoalAction"/>
+      </call>
+    </service>
+    <service id="App\Controller\Member\MemberAddProjectAction" class="App\Controller\Member\MemberAddProjectAction" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="security.user_password_encoder.generic"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.pNNo5z3.App\Controller\Member\MemberAddProjectAction"/>
+      </call>
+    </service>
     <service id="App\Controller\Member\MemberAddTaskAction" class="App\Controller\Member\MemberAddTaskAction" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -833,11 +849,27 @@
         <argument type="service" id=".service_locator.pNNo5z3.App\Controller\Member\MemberAddTaskAction"/>
       </call>
     </service>
+    <service id="App\Controller\Member\MemberGetAttributeAction" class="App\Controller\Member\MemberGetAttributeAction" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="security.user_password_encoder.generic"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.pNNo5z3.App\Controller\Member\MemberGetAttributeAction"/>
+      </call>
+    </service>
     <service id="App\Controller\Member\MemberGetItemAction" class="App\Controller\Member\MemberGetItemAction" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
     <service id="App\Controller\Member\MemberLoginByTokenCollectionAction" class="App\Controller\Member\MemberLoginByTokenCollectionAction" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
+    </service>
+    <service id="App\Controller\Member\MemberPutGoalAction" class="App\Controller\Member\MemberPutGoalAction" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="security.user_password_encoder.generic"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.pNNo5z3.App\Controller\Member\MemberPutGoalAction"/>
+      </call>
     </service>
     <service id="App\Controller\Member\MemberPutItemController" class="App\Controller\Member\MemberPutItemController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
@@ -845,6 +877,22 @@
       <argument type="service" id="security.user_password_encoder.generic"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.pNNo5z3.App\Controller\Member\MemberPutItemController"/>
+      </call>
+    </service>
+    <service id="App\Controller\Member\MemberPutProjectAction" class="App\Controller\Member\MemberPutProjectAction" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="security.user_password_encoder.generic"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.pNNo5z3.App\Controller\Member\MemberPutProjectAction"/>
+      </call>
+    </service>
+    <service id="App\Controller\Member\MemberPutTaskAction" class="App\Controller\Member\MemberPutTaskAction" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="security.user_password_encoder.generic"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.pNNo5z3.App\Controller\Member\MemberPutTaskAction"/>
       </call>
     </service>
     <service id="App\Controller\Member\MemberRemindPasswordCollectionController" class="App\Controller\Member\MemberRemindPasswordCollectionController" public="true" autowire="true" autoconfigure="true">
@@ -937,6 +985,30 @@
       <argument type="service" id="security.user_password_encoder.generic"/>
       <call method="setContainer">
         <argument type="service" id=".service_locator.pNNo5z3.App\Controller\Partner\PartnerActionController"/>
+      </call>
+    </service>
+    <service id="App\Controller\Partner\PartnerAddMemberGoalAction" class="App\Controller\Partner\PartnerAddMemberGoalAction" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="security.user_password_encoder.generic"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.pNNo5z3.App\Controller\Partner\PartnerAddMemberGoalAction"/>
+      </call>
+    </service>
+    <service id="App\Controller\Partner\PartnerAddMemberProjectAction" class="App\Controller\Partner\PartnerAddMemberProjectAction" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="security.user_password_encoder.generic"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.pNNo5z3.App\Controller\Partner\PartnerAddMemberProjectAction"/>
+      </call>
+    </service>
+    <service id="App\Controller\Partner\PartnerAddMemberTaskAction" class="App\Controller\Partner\PartnerAddMemberTaskAction" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="security.user_password_encoder.generic"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.pNNo5z3.App\Controller\Partner\PartnerAddMemberTaskAction"/>
       </call>
     </service>
     <service id="App\Controller\Partner\PartnerGetItemAction" class="App\Controller\Partner\PartnerGetItemAction" public="true" autowire="true" autoconfigure="true">
@@ -1098,6 +1170,10 @@
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
+    <service id="App\Repository\MemberProjectsRepository" class="App\Repository\MemberProjectsRepository" public="false" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
     <service id="App\Repository\MemberRepository" class="App\Repository\MemberRepository" public="false" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
@@ -1199,6 +1275,14 @@
       <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\SupervisorRepository" class="App\Repository\SupervisorRepository" public="false" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\UserConversationsRepository" class="App\Repository\UserConversationsRepository" public="false" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\UserMesagesRepository" class="App\Repository\UserMesagesRepository" public="false" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -4344,7 +4428,6 @@
         <argument type="service" id="security.authentication.provider.dao.client_login"/>
         <argument type="service" id="security.authentication.provider.anonymous.client_login"/>
         <argument type="service" id="security.authentication.provider.guard.frontend_member"/>
-        <argument type="service" id="security.authentication.provider.guard.frontend_members"/>
         <argument type="service" id="security.authentication.provider.guard.frontend_partner"/>
         <argument type="service" id="security.authentication.provider.guard.frontend_supervisor"/>
         <argument type="service" id="security.authentication.provider.anonymous.frontend"/>
@@ -4444,12 +4527,11 @@
       <argument type="service" id="security.role_hierarchy" on-invalid="null"/>
     </service>
     <service id="security.firewall.map" class="Symfony\Bundle\SecurityBundle\Security\FirewallMap" public="false">
-      <argument type="service" id=".service_locator.EkwjhDX"/>
+      <argument type="service" id=".service_locator.Tn13OPC"/>
       <argument type="iterator">
         <argument key="security.firewall.map.context.login" type="service" id=".security.request_matcher.aOksG4F"/>
         <argument key="security.firewall.map.context.client_login" type="service" id=".security.request_matcher._7j8kB_"/>
         <argument key="security.firewall.map.context.frontend_member" type="service" id=".security.request_matcher.8WYdkQ0"/>
-        <argument key="security.firewall.map.context.frontend_members" type="service" id=".security.request_matcher.A55mH35"/>
         <argument key="security.firewall.map.context.frontend_partner" type="service" id=".security.request_matcher.tr6McJp"/>
         <argument key="security.firewall.map.context.frontend_supervisor" type="service" id=".security.request_matcher.9uHoHJd"/>
         <argument key="security.firewall.map.context.frontend" type="service" id=".security.request_matcher.jg.jrf_"/>
@@ -4560,13 +4642,6 @@
       </call>
       <call method="add">
         <argument type="service" id=".security.request_matcher.7NY8NpN"/>
-        <argument type="collection">
-          <argument>ROLE_MEMBER</argument>
-        </argument>
-        <argument>null</argument>
-      </call>
-      <call method="add">
-        <argument type="service" id=".security.request_matcher.A4koiP."/>
         <argument type="collection">
           <argument>ROLE_MEMBER</argument>
         </argument>
@@ -4855,7 +4930,6 @@
         <argument>login</argument>
         <argument>client_login</argument>
         <argument>frontend_member</argument>
-        <argument>frontend_members</argument>
         <argument>frontend_partner</argument>
         <argument>frontend_supervisor</argument>
         <argument>docs</argument>
@@ -5167,65 +5241,6 @@
       <argument type="service" id="security.exception_listener.frontend_member"/>
       <argument>null</argument>
       <argument type="service" id="security.firewall.map.config.frontend_member"/>
-    </service>
-    <service id="security.firewall.map.config.frontend_members" class="Symfony\Bundle\SecurityBundle\Security\FirewallConfig" public="false">
-      <argument>frontend_members</argument>
-      <argument>security.user_checker</argument>
-      <argument>.security.request_matcher.A55mH35</argument>
-      <argument>true</argument>
-      <argument>true</argument>
-      <argument>security.user.provider.concrete.member_provider</argument>
-      <argument>null</argument>
-      <argument>lexik_jwt_authentication.jwt_token_authenticator</argument>
-      <argument>null</argument>
-      <argument>null</argument>
-      <argument type="collection">
-        <argument>guard</argument>
-      </argument>
-      <argument>null</argument>
-    </service>
-    <service id=".security.request_matcher.A55mH35" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/frontend/members</argument>
-    </service>
-    <service id="security.authentication.provider.guard.frontend_members" class="Symfony\Component\Security\Guard\Provider\GuardAuthenticationProvider" public="false">
-      <argument type="iterator">
-        <argument type="service" id="lexik_jwt_authentication.security.guard.jwt_token_authenticator"/>
-      </argument>
-      <argument type="service" id="security.user.provider.concrete.member_provider"/>
-      <argument>frontend_members</argument>
-      <argument type="service" id="security.user_checker"/>
-      <argument type="service" id="security.user_password_encoder.generic"/>
-    </service>
-    <service id="security.authentication.listener.guard.frontend_members" class="Symfony\Component\Security\Guard\Firewall\GuardAuthenticationListener" public="false">
-      <tag name="security.remember_me_aware" id="frontend_members" provider="security.user.provider.concrete.member_provider"/>
-      <argument type="service" id="security.authentication.guard_handler"/>
-      <argument type="service" id="security.authentication.manager"/>
-      <argument>frontend_members</argument>
-      <argument type="iterator">
-        <argument type="service" id="lexik_jwt_authentication.security.guard.jwt_token_authenticator"/>
-      </argument>
-      <argument type="service" id="monolog.logger.security" on-invalid="null"/>
-    </service>
-    <service id="security.exception_listener.frontend_members" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
-      <argument type="service" id="security.token_storage"/>
-      <argument type="service" id="security.authentication.trust_resolver"/>
-      <argument type="service" id="security.http_utils"/>
-      <argument>frontend_members</argument>
-      <argument type="service" id="lexik_jwt_authentication.security.guard.jwt_token_authenticator"/>
-      <argument>null</argument>
-      <argument>null</argument>
-      <argument type="service" id="monolog.logger.security" on-invalid="null"/>
-      <argument>true</argument>
-    </service>
-    <service id="security.firewall.map.context.frontend_members" class="Symfony\Bundle\SecurityBundle\Security\FirewallContext" public="false">
-      <argument type="iterator">
-        <argument type="service" id="security.channel_listener"/>
-        <argument type="service" id="security.authentication.listener.guard.frontend_members"/>
-        <argument type="service" id="security.access_listener"/>
-      </argument>
-      <argument type="service" id="security.exception_listener.frontend_members"/>
-      <argument>null</argument>
-      <argument type="service" id="security.firewall.map.config.frontend_members"/>
     </service>
     <service id="security.firewall.map.config.frontend_partner" class="Symfony\Bundle\SecurityBundle\Security\FirewallConfig" public="false">
       <argument>frontend_partner</argument>
@@ -5556,7 +5571,7 @@
       <argument>null</argument>
       <argument type="service" id="security.firewall.map.config.api"/>
     </service>
-    <service id=".service_locator.EkwjhDX" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.Tn13OPC" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="security.firewall.map.context.api" type="service" id="security.firewall.map.context.api"/>
@@ -5565,7 +5580,6 @@
         <argument key="security.firewall.map.context.docs" type="service" id="security.firewall.map.context.docs"/>
         <argument key="security.firewall.map.context.frontend" type="service" id="security.firewall.map.context.frontend"/>
         <argument key="security.firewall.map.context.frontend_member" type="service" id="security.firewall.map.context.frontend_member"/>
-        <argument key="security.firewall.map.context.frontend_members" type="service" id="security.firewall.map.context.frontend_members"/>
         <argument key="security.firewall.map.context.frontend_partner" type="service" id="security.firewall.map.context.frontend_partner"/>
         <argument key="security.firewall.map.context.frontend_supervisor" type="service" id="security.firewall.map.context.frontend_supervisor"/>
         <argument key="security.firewall.map.context.login" type="service" id="security.firewall.map.context.login"/>
@@ -5579,9 +5593,6 @@
     </service>
     <service id=".security.request_matcher.7NY8NpN" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/frontend/member/profile</argument>
-    </service>
-    <service id=".security.request_matcher.A4koiP." class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/frontend/members</argument>
     </service>
     <service id=".security.request_matcher.dfIUpyt" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/frontend/partners</argument>
@@ -5820,7 +5831,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory" public="false">
-      <argument type="service" id=".service_locator.30gzpQh"/>
+      <argument type="service" id=".service_locator.oWqTykj"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -6345,6 +6356,9 @@
         <argument key="annotated_app_entity_member_notifications_api_platform_core_bridge_doctrine_orm_filter_date_filter" type="service" id="annotated_app_entity_member_notifications_api_platform_core_bridge_doctrine_orm_filter_date_filter"/>
         <argument key="annotated_app_entity_member_notifications_api_platform_core_bridge_doctrine_orm_filter_order_filter" type="service" id="annotated_app_entity_member_notifications_api_platform_core_bridge_doctrine_orm_filter_order_filter"/>
         <argument key="annotated_app_entity_member_notifications_api_platform_core_bridge_doctrine_orm_filter_search_filter" type="service" id="annotated_app_entity_member_notifications_api_platform_core_bridge_doctrine_orm_filter_search_filter"/>
+        <argument key="annotated_app_entity_member_projects_api_platform_core_bridge_doctrine_orm_filter_date_filter" type="service" id="annotated_app_entity_member_projects_api_platform_core_bridge_doctrine_orm_filter_date_filter"/>
+        <argument key="annotated_app_entity_member_projects_api_platform_core_bridge_doctrine_orm_filter_order_filter" type="service" id="annotated_app_entity_member_projects_api_platform_core_bridge_doctrine_orm_filter_order_filter"/>
+        <argument key="annotated_app_entity_member_projects_api_platform_core_bridge_doctrine_orm_filter_search_filter" type="service" id="annotated_app_entity_member_projects_api_platform_core_bridge_doctrine_orm_filter_search_filter"/>
         <argument key="annotated_app_entity_member_task_api_platform_core_bridge_doctrine_orm_filter_date_filter" type="service" id="annotated_app_entity_member_task_api_platform_core_bridge_doctrine_orm_filter_date_filter"/>
         <argument key="annotated_app_entity_member_task_api_platform_core_bridge_doctrine_orm_filter_order_filter" type="service" id="annotated_app_entity_member_task_api_platform_core_bridge_doctrine_orm_filter_order_filter"/>
         <argument key="annotated_app_entity_member_task_api_platform_core_bridge_doctrine_orm_filter_search_filter" type="service" id="annotated_app_entity_member_task_api_platform_core_bridge_doctrine_orm_filter_search_filter"/>
@@ -6515,6 +6529,9 @@
         <argument>annotated_app_entity_n_available_translation_api_platform_core_bridge_doctrine_orm_filter_date_filter</argument>
         <argument>annotated_app_entity_n_available_translation_api_platform_core_bridge_doctrine_orm_filter_search_filter</argument>
         <argument>annotated_app_entity_n_available_translation_api_platform_core_bridge_doctrine_orm_filter_order_filter</argument>
+        <argument>annotated_app_entity_member_projects_api_platform_core_bridge_doctrine_orm_filter_date_filter</argument>
+        <argument>annotated_app_entity_member_projects_api_platform_core_bridge_doctrine_orm_filter_search_filter</argument>
+        <argument>annotated_app_entity_member_projects_api_platform_core_bridge_doctrine_orm_filter_order_filter</argument>
         <argument>annotated_app_entity_n_days_api_platform_core_bridge_doctrine_orm_filter_date_filter</argument>
         <argument>annotated_app_entity_n_days_api_platform_core_bridge_doctrine_orm_filter_search_filter</argument>
         <argument>annotated_app_entity_n_days_api_platform_core_bridge_doctrine_orm_filter_order_filter</argument>
@@ -10455,6 +10472,47 @@
       </argument>
       <argument type="service" id="serializer.name_converter.metadata_aware" on-invalid="ignore"/>
     </service>
+    <service id="annotated_app_entity_member_projects_api_platform_core_bridge_doctrine_orm_filter_date_filter" class="ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter" public="false" autowire="true">
+      <tag name="api_platform.filter"/>
+      <argument type="service" id="doctrine"/>
+      <argument>null</argument>
+      <argument type="service" id="monolog.logger" on-invalid="ignore"/>
+      <argument type="collection">
+        <argument key="createdAt">null</argument>
+        <argument key="updatedAt">null</argument>
+      </argument>
+      <argument type="service" id="serializer.name_converter.metadata_aware" on-invalid="ignore"/>
+    </service>
+    <service id="annotated_app_entity_member_projects_api_platform_core_bridge_doctrine_orm_filter_search_filter" class="ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter" public="false" autowire="true">
+      <tag name="api_platform.filter"/>
+      <argument type="service" id="doctrine"/>
+      <argument>null</argument>
+      <argument type="service" id="api_platform.iri_converter"/>
+      <argument type="service" id="property_accessor"/>
+      <argument type="service" id="monolog.logger" on-invalid="ignore"/>
+      <argument type="collection">
+        <argument key="id">exact</argument>
+        <argument key="member.name">ipartial</argument>
+        <argument key="name">ipartial</argument>
+      </argument>
+      <argument type="service" id="api_platform.identifiers_extractor.cached" on-invalid="ignore"/>
+      <argument type="service" id="serializer.name_converter.metadata_aware" on-invalid="ignore"/>
+    </service>
+    <service id="annotated_app_entity_member_projects_api_platform_core_bridge_doctrine_orm_filter_order_filter" class="ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter" public="false" autowire="true">
+      <tag name="api_platform.filter"/>
+      <argument type="service" id="doctrine"/>
+      <argument>null</argument>
+      <argument>order</argument>
+      <argument type="service" id="monolog.logger" on-invalid="ignore"/>
+      <argument type="collection">
+        <argument key="id">null</argument>
+        <argument key="member.name">null</argument>
+        <argument key="name">null</argument>
+        <argument key="createdAt">null</argument>
+        <argument key="updatedAt">null</argument>
+      </argument>
+      <argument type="service" id="serializer.name_converter.metadata_aware" on-invalid="ignore"/>
+    </service>
     <service id="annotated_app_entity_n_days_api_platform_core_bridge_doctrine_orm_filter_date_filter" class="ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter" public="false" autowire="true">
       <tag name="api_platform.filter"/>
       <argument type="service" id="doctrine"/>
@@ -10670,12 +10728,30 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Member\MemberActionController" class="App\Controller\Member\MemberActionController" public="false" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Member\MemberActionController" class="App\Controller\Member\MemberActionController" public="false" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Member\MemberActionController" class="App\Controller\Member\MemberActionController" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Member\MemberAddGoalAction" class="App\Controller\Member\MemberAddGoalAction" public="false" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Member\MemberAddGoalAction" class="App\Controller\Member\MemberAddGoalAction" public="false" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Member\MemberAddGoalAction" class="App\Controller\Member\MemberAddGoalAction" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Member\MemberAddProjectAction" class="App\Controller\Member\MemberAddProjectAction" public="false" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Member\MemberAddProjectAction" class="App\Controller\Member\MemberAddProjectAction" public="false" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Member\MemberAddProjectAction" class="App\Controller\Member\MemberAddProjectAction" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Member\MemberAddTaskAction" class="App\Controller\Member\MemberAddTaskAction" public="false" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Member\MemberAddTaskAction" class="App\Controller\Member\MemberAddTaskAction" public="false" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Member\MemberAddTaskAction" class="App\Controller\Member\MemberAddTaskAction" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Member\MemberGetAttributeAction" class="App\Controller\Member\MemberGetAttributeAction" public="false" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Member\MemberGetAttributeAction" class="App\Controller\Member\MemberGetAttributeAction" public="false" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Member\MemberGetAttributeAction" class="App\Controller\Member\MemberGetAttributeAction" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Member\MemberPutGoalAction" class="App\Controller\Member\MemberPutGoalAction" public="false" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Member\MemberPutGoalAction" class="App\Controller\Member\MemberPutGoalAction" public="false" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Member\MemberPutGoalAction" class="App\Controller\Member\MemberPutGoalAction" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Member\MemberPutItemController" class="App\Controller\Member\MemberPutItemController" public="false" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Member\MemberPutItemController" class="App\Controller\Member\MemberPutItemController" public="false" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Member\MemberPutItemController" class="App\Controller\Member\MemberPutItemController" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Member\MemberPutProjectAction" class="App\Controller\Member\MemberPutProjectAction" public="false" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Member\MemberPutProjectAction" class="App\Controller\Member\MemberPutProjectAction" public="false" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Member\MemberPutProjectAction" class="App\Controller\Member\MemberPutProjectAction" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Member\MemberPutTaskAction" class="App\Controller\Member\MemberPutTaskAction" public="false" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Member\MemberPutTaskAction" class="App\Controller\Member\MemberPutTaskAction" public="false" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Member\MemberPutTaskAction" class="App\Controller\Member\MemberPutTaskAction" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Member\MemberRemindPasswordCollectionController" class="App\Controller\Member\MemberRemindPasswordCollectionController" public="false" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Member\MemberRemindPasswordCollectionController" class="App\Controller\Member\MemberRemindPasswordCollectionController" public="false" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Member\MemberRemindPasswordCollectionController" class="App\Controller\Member\MemberRemindPasswordCollectionController" public="false" autowire="true" autoconfigure="true" abstract="true"/>
@@ -10688,6 +10764,15 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Partner\PartnerActionController" class="App\Controller\Partner\PartnerActionController" public="false" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Partner\PartnerActionController" class="App\Controller\Partner\PartnerActionController" public="false" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Partner\PartnerActionController" class="App\Controller\Partner\PartnerActionController" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Partner\PartnerAddMemberGoalAction" class="App\Controller\Partner\PartnerAddMemberGoalAction" public="false" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Partner\PartnerAddMemberGoalAction" class="App\Controller\Partner\PartnerAddMemberGoalAction" public="false" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Partner\PartnerAddMemberGoalAction" class="App\Controller\Partner\PartnerAddMemberGoalAction" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Partner\PartnerAddMemberProjectAction" class="App\Controller\Partner\PartnerAddMemberProjectAction" public="false" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Partner\PartnerAddMemberProjectAction" class="App\Controller\Partner\PartnerAddMemberProjectAction" public="false" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Partner\PartnerAddMemberProjectAction" class="App\Controller\Partner\PartnerAddMemberProjectAction" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Partner\PartnerAddMemberTaskAction" class="App\Controller\Partner\PartnerAddMemberTaskAction" public="false" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Partner\PartnerAddMemberTaskAction" class="App\Controller\Partner\PartnerAddMemberTaskAction" public="false" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Partner\PartnerAddMemberTaskAction" class="App\Controller\Partner\PartnerAddMemberTaskAction" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Partner\PartnerPutItemController" class="App\Controller\Partner\PartnerPutItemController" public="false" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Partner\PartnerPutItemController" class="App\Controller\Partner\PartnerPutItemController" public="false" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Partner\PartnerPutItemController" class="App\Controller\Partner\PartnerPutItemController" public="false" autowire="true" autoconfigure="true" abstract="true"/>
@@ -10740,6 +10825,8 @@
     <service id=".abstract.instanceof.App\Repository\MemberAvailabilityRepository" class="App\Repository\MemberAvailabilityRepository" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\MemberGoalsRepository" class="App\Repository\MemberGoalsRepository" public="false" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\MemberGoalsRepository" class="App\Repository\MemberGoalsRepository" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\MemberProjectsRepository" class="App\Repository\MemberProjectsRepository" public="false" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\MemberProjectsRepository" class="App\Repository\MemberProjectsRepository" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\MemberRepository" class="App\Repository\MemberRepository" public="false" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\MemberRepository" class="App\Repository\MemberRepository" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ModuleRepository" class="App\Repository\ModuleRepository" public="false" autowire="true" abstract="true"/>
@@ -10792,6 +10879,10 @@
     <service id=".abstract.instanceof.App\Repository\RoleRepository" class="App\Repository\RoleRepository" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\SupervisorRepository" class="App\Repository\SupervisorRepository" public="false" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\SupervisorRepository" class="App\Repository\SupervisorRepository" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserConversationsRepository" class="App\Repository\UserConversationsRepository" public="false" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\UserConversationsRepository" class="App\Repository\UserConversationsRepository" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserMesagesRepository" class="App\Repository\UserMesagesRepository" public="false" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\UserMesagesRepository" class="App\Repository\UserMesagesRepository" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" public="false" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\UserRepository" class="App\Repository\UserRepository" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.ApiPlatform\Core\DataProvider\CollectionDataProviderInterface.0.App\Service\DataProvider\ProductCollectionDataProvider" class="App\Service\DataProvider\ProductCollectionDataProvider" public="false" autowire="true" abstract="true"/>
@@ -11039,6 +11130,22 @@
         <argument key="historyRepository" type="service" id="App\Repository\HistoryRepository"/>
       </argument>
     </service>
+    <service id=".service_locator.FgUPP4D" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="data" type="service" id=".errored..service_locator.FgUPP4D.App\Entity\MemberGoals"/>
+        <argument key="em" type="service" id="doctrine.orm.default_entity_manager"/>
+        <argument key="member" type="service" id=".errored..service_locator.FgUPP4D.Symfony\Component\Security\Core\User\UserInterface"/>
+      </argument>
+    </service>
+    <service id=".service_locator.PoKAg3i" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="data" type="service" id=".errored..service_locator.PoKAg3i.App\Entity\MemberProjects"/>
+        <argument key="em" type="service" id="doctrine.orm.default_entity_manager"/>
+        <argument key="member" type="service" id=".errored..service_locator.PoKAg3i.Symfony\Component\Security\Core\User\UserInterface"/>
+      </argument>
+    </service>
     <service id=".service_locator.8rTI.Ck" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -11210,6 +11317,22 @@
         <argument key="ntaskTranslationRepository" type="service" id="App\Repository\NTaskTranslationRepository"/>
       </argument>
     </service>
+    <service id=".service_locator.WAo_RVC" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="data" type="service" id=".errored..service_locator.WAo_RVC.App\Entity\MemberProjects"/>
+        <argument key="em" type="service" id="doctrine.orm.default_entity_manager"/>
+        <argument key="partner" type="service" id=".errored..service_locator.WAo_RVC.Symfony\Component\Security\Core\User\UserInterface"/>
+      </argument>
+    </service>
+    <service id=".service_locator.irrva6T" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="data" type="service" id=".errored..service_locator.irrva6T.App\Entity\MemberTask"/>
+        <argument key="em" type="service" id="doctrine.orm.default_entity_manager"/>
+        <argument key="partner" type="service" id=".errored..service_locator.irrva6T.Symfony\Component\Security\Core\User\UserInterface"/>
+      </argument>
+    </service>
     <service id=".service_locator.rOOVBlf" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -11307,7 +11430,7 @@
         <argument key="data" type="service" id=".errored..service_locator.5kT8q.7.Symfony\Component\Security\Core\User\UserInterface"/>
       </argument>
     </service>
-    <service id=".service_locator.ylBFL4U" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.KTx3EQF" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\Client\ClientGetItemAction::__invoke" type="service" id=".service_locator.I._eZQe"/>
@@ -11317,10 +11440,16 @@
         <argument key="App\Controller\Client\ClientSignupPostCollectionController::__invoke" type="service" id=".service_locator.TAz2alH"/>
         <argument key="App\Controller\DownloadFileAction::indexAction" type="service" id=".service_locator.8ww7YMj"/>
         <argument key="App\Controller\History\HistoryGetEntityCollectionAction::__invoke" type="service" id=".service_locator.rbvsq4D"/>
+        <argument key="App\Controller\Member\MemberAddGoalAction::__invoke" type="service" id=".service_locator.FgUPP4D"/>
+        <argument key="App\Controller\Member\MemberAddProjectAction::__invoke" type="service" id=".service_locator.PoKAg3i"/>
         <argument key="App\Controller\Member\MemberAddTaskAction::__invoke" type="service" id=".service_locator.8rTI.Ck"/>
+        <argument key="App\Controller\Member\MemberGetAttributeAction::__invoke" type="service" id=".service_locator.EOgtyWZ"/>
         <argument key="App\Controller\Member\MemberGetItemAction::__invoke" type="service" id=".service_locator.EOgtyWZ"/>
         <argument key="App\Controller\Member\MemberLoginByTokenCollectionAction::__invoke" type="service" id=".service_locator.u4ESOzD"/>
+        <argument key="App\Controller\Member\MemberPutGoalAction::__invoke" type="service" id=".service_locator.DPdmpKe"/>
         <argument key="App\Controller\Member\MemberPutItemController::__invoke" type="service" id=".service_locator.DPdmpKe"/>
+        <argument key="App\Controller\Member\MemberPutProjectAction::__invoke" type="service" id=".service_locator.DPdmpKe"/>
+        <argument key="App\Controller\Member\MemberPutTaskAction::__invoke" type="service" id=".service_locator.DPdmpKe"/>
         <argument key="App\Controller\Member\MemberRemindPasswordCollectionController::__invoke" type="service" id=".service_locator.zY3Z4or"/>
         <argument key="App\Controller\Member\MemberSignupMovPostCollectionController::__invoke" type="service" id=".service_locator.Vib1CW."/>
         <argument key="App\Controller\Member\MemberSignupPostCollectionController::__invoke" type="service" id=".service_locator.DvsSK3Z"/>
@@ -11344,6 +11473,9 @@
         <argument key="App\Controller\NSpecicOutcome\NSpecicOutcomeFrontendGetItemAction::__invoke" type="service" id=".service_locator.hP_oWeV"/>
         <argument key="App\Controller\NTask\NTaskFrontendGetCollectionAction::__invoke" type="service" id=".service_locator.RZRXbzh"/>
         <argument key="App\Controller\NTask\NTaskFrontendGetItemAction::__invoke" type="service" id=".service_locator.66H7zHR"/>
+        <argument key="App\Controller\Partner\PartnerAddMemberGoalAction::__invoke" type="service" id=".service_locator.FgUPP4D"/>
+        <argument key="App\Controller\Partner\PartnerAddMemberProjectAction::__invoke" type="service" id=".service_locator.WAo_RVC"/>
+        <argument key="App\Controller\Partner\PartnerAddMemberTaskAction::__invoke" type="service" id=".service_locator.irrva6T"/>
         <argument key="App\Controller\Partner\PartnerGetItemAction::__invoke" type="service" id=".service_locator.rOOVBlf"/>
         <argument key="App\Controller\Partner\PartnerInsertNotificationAction::__invoke" type="service" id=".service_locator.rOOVBlf"/>
         <argument key="App\Controller\Partner\PartnerLoginByTokenCollectionAction::__invoke" type="service" id=".service_locator.357TO4_"/>
@@ -11373,14 +11505,26 @@
         <argument key="App\Controller\DownloadFileAction:indexAction" type="service" id=".service_locator.8ww7YMj"/>
         <argument key="App\Controller\History\HistoryGetEntityCollectionAction:__invoke" type="service" id=".service_locator.rbvsq4D"/>
         <argument key="App\Controller\History\HistoryGetEntityCollectionAction" type="service" id=".service_locator.rbvsq4D"/>
+        <argument key="App\Controller\Member\MemberAddGoalAction:__invoke" type="service" id=".service_locator.FgUPP4D"/>
+        <argument key="App\Controller\Member\MemberAddGoalAction" type="service" id=".service_locator.FgUPP4D"/>
+        <argument key="App\Controller\Member\MemberAddProjectAction:__invoke" type="service" id=".service_locator.PoKAg3i"/>
+        <argument key="App\Controller\Member\MemberAddProjectAction" type="service" id=".service_locator.PoKAg3i"/>
         <argument key="App\Controller\Member\MemberAddTaskAction:__invoke" type="service" id=".service_locator.8rTI.Ck"/>
         <argument key="App\Controller\Member\MemberAddTaskAction" type="service" id=".service_locator.8rTI.Ck"/>
+        <argument key="App\Controller\Member\MemberGetAttributeAction:__invoke" type="service" id=".service_locator.EOgtyWZ"/>
+        <argument key="App\Controller\Member\MemberGetAttributeAction" type="service" id=".service_locator.EOgtyWZ"/>
         <argument key="App\Controller\Member\MemberGetItemAction:__invoke" type="service" id=".service_locator.EOgtyWZ"/>
         <argument key="App\Controller\Member\MemberGetItemAction" type="service" id=".service_locator.EOgtyWZ"/>
         <argument key="App\Controller\Member\MemberLoginByTokenCollectionAction:__invoke" type="service" id=".service_locator.u4ESOzD"/>
         <argument key="App\Controller\Member\MemberLoginByTokenCollectionAction" type="service" id=".service_locator.u4ESOzD"/>
+        <argument key="App\Controller\Member\MemberPutGoalAction:__invoke" type="service" id=".service_locator.DPdmpKe"/>
+        <argument key="App\Controller\Member\MemberPutGoalAction" type="service" id=".service_locator.DPdmpKe"/>
         <argument key="App\Controller\Member\MemberPutItemController:__invoke" type="service" id=".service_locator.DPdmpKe"/>
         <argument key="App\Controller\Member\MemberPutItemController" type="service" id=".service_locator.DPdmpKe"/>
+        <argument key="App\Controller\Member\MemberPutProjectAction:__invoke" type="service" id=".service_locator.DPdmpKe"/>
+        <argument key="App\Controller\Member\MemberPutProjectAction" type="service" id=".service_locator.DPdmpKe"/>
+        <argument key="App\Controller\Member\MemberPutTaskAction:__invoke" type="service" id=".service_locator.DPdmpKe"/>
+        <argument key="App\Controller\Member\MemberPutTaskAction" type="service" id=".service_locator.DPdmpKe"/>
         <argument key="App\Controller\Member\MemberRemindPasswordCollectionController:__invoke" type="service" id=".service_locator.zY3Z4or"/>
         <argument key="App\Controller\Member\MemberRemindPasswordCollectionController" type="service" id=".service_locator.zY3Z4or"/>
         <argument key="App\Controller\Member\MemberSignupMovPostCollectionController:__invoke" type="service" id=".service_locator.Vib1CW."/>
@@ -11427,6 +11571,12 @@
         <argument key="App\Controller\NTask\NTaskFrontendGetCollectionAction" type="service" id=".service_locator.RZRXbzh"/>
         <argument key="App\Controller\NTask\NTaskFrontendGetItemAction:__invoke" type="service" id=".service_locator.66H7zHR"/>
         <argument key="App\Controller\NTask\NTaskFrontendGetItemAction" type="service" id=".service_locator.66H7zHR"/>
+        <argument key="App\Controller\Partner\PartnerAddMemberGoalAction:__invoke" type="service" id=".service_locator.FgUPP4D"/>
+        <argument key="App\Controller\Partner\PartnerAddMemberGoalAction" type="service" id=".service_locator.FgUPP4D"/>
+        <argument key="App\Controller\Partner\PartnerAddMemberProjectAction:__invoke" type="service" id=".service_locator.WAo_RVC"/>
+        <argument key="App\Controller\Partner\PartnerAddMemberProjectAction" type="service" id=".service_locator.WAo_RVC"/>
+        <argument key="App\Controller\Partner\PartnerAddMemberTaskAction:__invoke" type="service" id=".service_locator.irrva6T"/>
+        <argument key="App\Controller\Partner\PartnerAddMemberTaskAction" type="service" id=".service_locator.irrva6T"/>
         <argument key="App\Controller\Partner\PartnerGetItemAction:__invoke" type="service" id=".service_locator.rOOVBlf"/>
         <argument key="App\Controller\Partner\PartnerGetItemAction" type="service" id=".service_locator.rOOVBlf"/>
         <argument key="App\Controller\Partner\PartnerInsertNotificationAction:__invoke" type="service" id=".service_locator.rOOVBlf"/>
@@ -11558,7 +11708,7 @@
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
       </argument>
     </service>
-    <service id=".service_locator.30gzpQh" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.oWqTykj" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\CategoryRepository" type="service" id="App\Repository\CategoryRepository"/>
@@ -11570,6 +11720,7 @@
         <argument key="App\Repository\LanguageRepository" type="service" id="App\Repository\LanguageRepository"/>
         <argument key="App\Repository\MemberAvailabilityRepository" type="service" id="App\Repository\MemberAvailabilityRepository"/>
         <argument key="App\Repository\MemberGoalsRepository" type="service" id="App\Repository\MemberGoalsRepository"/>
+        <argument key="App\Repository\MemberProjectsRepository" type="service" id="App\Repository\MemberProjectsRepository"/>
         <argument key="App\Repository\MemberRepository" type="service" id="App\Repository\MemberRepository"/>
         <argument key="App\Repository\ModuleRepository" type="service" id="App\Repository\ModuleRepository"/>
         <argument key="App\Repository\NAvailableRepository" type="service" id="App\Repository\NAvailableRepository"/>
@@ -11596,6 +11747,8 @@
         <argument key="App\Repository\RatingsRepository" type="service" id="App\Repository\RatingsRepository"/>
         <argument key="App\Repository\RoleRepository" type="service" id="App\Repository\RoleRepository"/>
         <argument key="App\Repository\SupervisorRepository" type="service" id="App\Repository\SupervisorRepository"/>
+        <argument key="App\Repository\UserConversationsRepository" type="service" id="App\Repository\UserConversationsRepository"/>
+        <argument key="App\Repository\UserMesagesRepository" type="service" id="App\Repository\UserMesagesRepository"/>
         <argument key="App\Repository\UserRepository" type="service" id="App\Repository\UserRepository"/>
       </argument>
     </service>
@@ -11784,15 +11937,51 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.pNNo5z3" method="withContext"/>
     </service>
+    <service id=".service_locator.pNNo5z3.App\Controller\Member\MemberAddGoalAction" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\Member\MemberAddGoalAction"/>
+      <argument>App\Controller\Member\MemberAddGoalAction</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.pNNo5z3" method="withContext"/>
+    </service>
+    <service id=".service_locator.pNNo5z3.App\Controller\Member\MemberAddProjectAction" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\Member\MemberAddProjectAction"/>
+      <argument>App\Controller\Member\MemberAddProjectAction</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.pNNo5z3" method="withContext"/>
+    </service>
     <service id=".service_locator.pNNo5z3.App\Controller\Member\MemberAddTaskAction" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\Member\MemberAddTaskAction"/>
       <argument>App\Controller\Member\MemberAddTaskAction</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.pNNo5z3" method="withContext"/>
     </service>
+    <service id=".service_locator.pNNo5z3.App\Controller\Member\MemberGetAttributeAction" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\Member\MemberGetAttributeAction"/>
+      <argument>App\Controller\Member\MemberGetAttributeAction</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.pNNo5z3" method="withContext"/>
+    </service>
+    <service id=".service_locator.pNNo5z3.App\Controller\Member\MemberPutGoalAction" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\Member\MemberPutGoalAction"/>
+      <argument>App\Controller\Member\MemberPutGoalAction</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.pNNo5z3" method="withContext"/>
+    </service>
     <service id=".service_locator.pNNo5z3.App\Controller\Member\MemberPutItemController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\Member\MemberPutItemController"/>
       <argument>App\Controller\Member\MemberPutItemController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.pNNo5z3" method="withContext"/>
+    </service>
+    <service id=".service_locator.pNNo5z3.App\Controller\Member\MemberPutProjectAction" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\Member\MemberPutProjectAction"/>
+      <argument>App\Controller\Member\MemberPutProjectAction</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.pNNo5z3" method="withContext"/>
+    </service>
+    <service id=".service_locator.pNNo5z3.App\Controller\Member\MemberPutTaskAction" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\Member\MemberPutTaskAction"/>
+      <argument>App\Controller\Member\MemberPutTaskAction</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.pNNo5z3" method="withContext"/>
     </service>
@@ -11817,6 +12006,24 @@
     <service id=".service_locator.pNNo5z3.App\Controller\Partner\PartnerActionController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\Partner\PartnerActionController"/>
       <argument>App\Controller\Partner\PartnerActionController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.pNNo5z3" method="withContext"/>
+    </service>
+    <service id=".service_locator.pNNo5z3.App\Controller\Partner\PartnerAddMemberGoalAction" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\Partner\PartnerAddMemberGoalAction"/>
+      <argument>App\Controller\Partner\PartnerAddMemberGoalAction</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.pNNo5z3" method="withContext"/>
+    </service>
+    <service id=".service_locator.pNNo5z3.App\Controller\Partner\PartnerAddMemberProjectAction" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\Partner\PartnerAddMemberProjectAction"/>
+      <argument>App\Controller\Partner\PartnerAddMemberProjectAction</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.pNNo5z3" method="withContext"/>
+    </service>
+    <service id=".service_locator.pNNo5z3.App\Controller\Partner\PartnerAddMemberTaskAction" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\Partner\PartnerAddMemberTaskAction"/>
+      <argument>App\Controller\Partner\PartnerAddMemberTaskAction</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.pNNo5z3" method="withContext"/>
     </service>
@@ -12032,12 +12239,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.ylBFL4U"/>
+      <argument type="service" id=".service_locator.KTx3EQF"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.ylBFL4U"/>
+      <argument type="service" id=".service_locator.KTx3EQF"/>
     </service>
     <service id="api_platform.swagger.normalizer.api_gateway.inner" class="ApiPlatform\Core\Swagger\Serializer\DocumentationNormalizer" public="false">
       <argument type="service" id="api_platform.metadata.resource.metadata_factory.cached"/>
@@ -12079,11 +12286,19 @@
     <service id=".errored..service_locator.DPdmpKe.Symfony\Component\Security\Core\User\UserInterface" class="Symfony\Component\Security\Core\User\UserInterface"/>
     <service id=".errored..service_locator.TAz2alH.App\Entity\Client" class="App\Entity\Client"/>
     <service id=".errored..service_locator.8ww7YMj.App\Entity\File" class="App\Entity\File"/>
+    <service id=".errored..service_locator.FgUPP4D.App\Entity\MemberGoals" class="App\Entity\MemberGoals"/>
+    <service id=".errored..service_locator.FgUPP4D.Symfony\Component\Security\Core\User\UserInterface" class="Symfony\Component\Security\Core\User\UserInterface"/>
+    <service id=".errored..service_locator.PoKAg3i.App\Entity\MemberProjects" class="App\Entity\MemberProjects"/>
+    <service id=".errored..service_locator.PoKAg3i.Symfony\Component\Security\Core\User\UserInterface" class="Symfony\Component\Security\Core\User\UserInterface"/>
     <service id=".errored..service_locator.8rTI.Ck.App\Entity\MemberTask" class="App\Entity\MemberTask"/>
     <service id=".errored..service_locator.8rTI.Ck.Symfony\Component\Security\Core\User\UserInterface" class="Symfony\Component\Security\Core\User\UserInterface"/>
     <service id=".errored..service_locator.EOgtyWZ.Symfony\Component\Security\Core\User\UserInterface" class="Symfony\Component\Security\Core\User\UserInterface"/>
     <service id=".errored..service_locator.Vib1CW..App\Entity\Member" class="App\Entity\Member"/>
     <service id=".errored..service_locator.DvsSK3Z.App\Entity\Member" class="App\Entity\Member"/>
+    <service id=".errored..service_locator.WAo_RVC.App\Entity\MemberProjects" class="App\Entity\MemberProjects"/>
+    <service id=".errored..service_locator.WAo_RVC.Symfony\Component\Security\Core\User\UserInterface" class="Symfony\Component\Security\Core\User\UserInterface"/>
+    <service id=".errored..service_locator.irrva6T.App\Entity\MemberTask" class="App\Entity\MemberTask"/>
+    <service id=".errored..service_locator.irrva6T.Symfony\Component\Security\Core\User\UserInterface" class="Symfony\Component\Security\Core\User\UserInterface"/>
     <service id=".errored..service_locator.rOOVBlf.Symfony\Component\Security\Core\User\UserInterface" class="Symfony\Component\Security\Core\User\UserInterface"/>
     <service id=".errored..service_locator.J0Kf9DR.App\Entity\Partner" class="App\Entity\Partner"/>
     <service id=".errored..service_locator.2BrqKKL.App\Entity\Partner" class="App\Entity\Partner"/>
@@ -12509,8 +12724,6 @@
     <service id="security.user_checker.client_login" alias="security.user_checker" public="false"/>
     <service id="security.authentication.session_strategy.frontend_member" alias="security.authentication.session_strategy_noop"/>
     <service id="security.user_checker.frontend_member" alias="security.user_checker" public="false"/>
-    <service id="security.authentication.session_strategy.frontend_members" alias="security.authentication.session_strategy_noop"/>
-    <service id="security.user_checker.frontend_members" alias="security.user_checker" public="false"/>
     <service id="security.authentication.session_strategy.frontend_partner" alias="security.authentication.session_strategy_noop"/>
     <service id="security.user_checker.frontend_partner" alias="security.user_checker" public="false"/>
     <service id="security.authentication.session_strategy.frontend_supervisor" alias="security.authentication.session_strategy_noop"/>
@@ -12657,7 +12870,7 @@
     <service id="League\Flysystem\FilesystemInterface $imageFilesystem" alias="oneup_flysystem.image_filesystem_filesystem" public="false"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.CmORmuK" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.ylBFL4U"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.KTx3EQF"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="api_platform.name_converter" alias="serializer.name_converter.metadata_aware"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -12673,7 +12886,7 @@
     <service id="gesdinet.jwtrefreshtoken.object_manager" alias="doctrine.orm.default_entity_manager"/>
     <service id="gesdinet.jwtrefreshtoken.user_checker" alias="security.user_checker"/>
     <service id=".service_locator.c3XszGA" alias="api_platform.serializer_locator" public="false"/>
-    <service id=".service_locator.BWINCeq" alias="api_platform.filter_locator" public="false"/>
+    <service id=".service_locator.oxQLfVA" alias="api_platform.filter_locator" public="false"/>
     <service id=".service_locator.tHpW6v3" alias=".service_locator.Y7gDuDN" public="false"/>
     <service id="validator" alias="debug.validator" public="true"/>
     <service id="api_platform.metadata.property.metadata_factory.property_info.inner" alias="api_platform.metadata.property.metadata_factory.xml" public="false"/>

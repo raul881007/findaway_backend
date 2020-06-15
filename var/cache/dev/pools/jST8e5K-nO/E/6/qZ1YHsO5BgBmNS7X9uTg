@@ -22,7 +22,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
             ],
             'value' => [
                 2 => [
-                    'order_goal' => 'ASC',
+                    'ordergoal' => 'ASC',
                 ],
             ],
         ],

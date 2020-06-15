@@ -281,6 +281,11 @@ class Supervisor implements SupervisorInterface, SearchInterface, UserInterface
     private $memberNotification;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UserConversations", mappedBy="supervisor")
+     */
+    private $userConversations;
+
+    /**
      * Supervisor constructor.
      * @throws \Exception
      */
@@ -289,6 +294,7 @@ class Supervisor implements SupervisorInterface, SearchInterface, UserInterface
         $this->supervisors = new ArrayCollection();
         $this->password = \bin2hex(\random_bytes(32));
         $this->memberNotification = new ArrayCollection();
+        $this->userConversations = new ArrayCollection();
     }
 
     /**
@@ -499,6 +505,37 @@ class Supervisor implements SupervisorInterface, SearchInterface, UserInterface
             // set the owning side to null (unless already changed)
             if ($memberNotification->getSupervisor() === $this) {
                 $memberNotification->setSupervisor(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserConversations[]
+     */
+    public function getUserConversations(): Collection
+    {
+        return $this->userConversations;
+    }
+
+    public function addUserConversation(UserConversations $userConversation): self
+    {
+        if (!$this->userConversations->contains($userConversation)) {
+            $this->userConversations[] = $userConversation;
+            $userConversation->setSupervisor($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserConversation(UserConversations $userConversation): self
+    {
+        if ($this->userConversations->contains($userConversation)) {
+            $this->userConversations->removeElement($userConversation);
+            // set the owning side to null (unless already changed)
+            if ($userConversation->getSupervisor() === $this) {
+                $userConversation->setSupervisor(null);
             }
         }
 

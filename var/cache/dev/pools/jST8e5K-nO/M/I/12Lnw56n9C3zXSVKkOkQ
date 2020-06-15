@@ -96,6 +96,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                         'normalization_context' => [
                             'groups' => [
                                 'partner_get_item',
+                                'member_get_item',
                             ],
                         ],
                         'controller' => 'App\\Controller\\Partner\\PartnerGetItemAction',

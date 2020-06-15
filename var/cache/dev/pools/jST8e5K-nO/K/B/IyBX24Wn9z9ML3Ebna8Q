@@ -17,6 +17,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                 1 => [
                     'partner_read',
                     'partner_write',
+                    'partner_get_item',
                 ],
             ],
         ],

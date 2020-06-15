@@ -19,6 +19,34 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     'post' => [
                         'access_control' => 'is_granted(\'ROLE_MEMBER_GOALS_CREATE\')',
                     ],
+                    'addGoal' => [
+                        'access_control' => 'is_granted(\'ROLE_MEMBER\')',
+                        'method' => 'POST',
+                        'path' => '/frontend/member/profile/goal/add',
+                        'denormalization_context' => [
+                            'groups' => [
+                                'member_get_item',
+                            ],
+                        ],
+                        'controller' => 'App\\Controller\\Member\\MemberAddGoalAction',
+                        'defaults' => [
+                            '_api_receive' => true,
+                        ],
+                    ],
+                    'addPartnerToMemberGoal' => [
+                        'access_control' => 'is_granted(\'ROLE_PARTNER\')',
+                        'method' => 'POST',
+                        'path' => '/frontend/partner/profile/goal/add',
+                        'denormalization_context' => [
+                            'groups' => [
+                                'member_get_item',
+                            ],
+                        ],
+                        'controller' => 'App\\Controller\\Partner\\PartnerAddMemberGoalAction',
+                        'defaults' => [
+                            '_api_receive' => true,
+                        ],
+                    ],
                 ],
             ],
             'itemOperations' => [
@@ -31,6 +59,20 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     ],
                     'delete' => [
                         'access_control' => 'is_granted(\'ROLE_MEMBER_GOALS_DELETE\')',
+                    ],
+                    'memberPutGoal' => [
+                        'access_control' => 'is_granted(\'ROLE_MEMBER\')',
+                        'method' => 'PUT',
+                        'path' => '/frontend/member/profile/goal/update',
+                        'normalization_context' => [
+                            'groups' => [
+                                'member_put_goal',
+                            ],
+                        ],
+                        'controller' => 'App\\Controller\\Member\\MemberPutGoalAction',
+                        'defaults' => [
+                            '_api_receive' => false,
+                        ],
                     ],
                 ],
             ],

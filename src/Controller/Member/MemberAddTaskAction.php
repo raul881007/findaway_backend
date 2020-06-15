@@ -32,7 +32,7 @@ class MemberAddTaskAction extends BaseUserController
         UserInterface $member,
         EntityManagerInterface $em
 
-    ): Member {
+    ): MemberTask {
         $params = json_decode($request->getContent());
 
         if ($data instanceof MemberTask) {
@@ -45,6 +45,9 @@ class MemberAddTaskAction extends BaseUserController
             if (isset($params->iscomplete)) {
                 $data->setIsCompleted($params->iscomplete);
             }
+            if (isset($params->isarchieved)) {
+                $data->setIsArchieved($params->isarchieved);
+            }
              if ($member instanceof Member) {
             	$data->setMember($member);
         	}
@@ -53,6 +56,6 @@ class MemberAddTaskAction extends BaseUserController
             $em->flush();
         }
 
-        return $member;
+        return $data;
     }
 }

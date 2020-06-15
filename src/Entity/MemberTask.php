@@ -18,7 +18,10 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 
+use App\Controller\Partner\PartnerAddMemberTaskAction;
+
 use App\Controller\Member\MemberAddTaskAction;
+use App\Controller\Member\MemberPutTaskAction;
 
 /**
  * MemberTask
@@ -47,6 +50,16 @@ use App\Controller\Member\MemberAddTaskAction;
  *              "controller"=MemberAddTaskAction::class,
  *              "defaults"={"_api_receive"=true},
  *          },
+ *			"addPartnerToMemberTask"={
+ *              "access_control"="is_granted('ROLE_PARTNER')",
+ *              "method"="POST",
+ *              "path"="/frontend/partner/profile/task/add",
+ *              "denormalization_context"={
+ *                  "groups"={"member_get_item"}
+ *              },
+ *              "controller"=PartnerAddMemberTaskAction::class,
+ *              "defaults"={"_api_receive"=true},
+ *          },
  *     },
  *     itemOperations={
  *          "get"={
@@ -57,7 +70,17 @@ use App\Controller\Member\MemberAddTaskAction;
  *          },
  *          "delete"={
  *              "access_control"="is_granted('ROLE_MEMBER_TASK_DELETE')"
- *          }
+ *          },
+ *			"memberPutTask"={
+ *              "access_control"="is_granted('ROLE_MEMBER')",
+ *              "method"="PUT",
+ *              "path"="/frontend/member/profile/task/update",
+ *              "normalization_context"={
+ *                  "groups"={"member_put_task"}
+ *              },
+ *              "controller"=MemberPutTaskAction::class,
+ *              "defaults"={"_api_receive"=false},
+ *          },
  *     })
  * @ApiFilter(DateFilter::class, properties={"createdAt", "updatedAt"})
  * @ApiFilter(SearchFilter::class, properties={
@@ -148,6 +171,21 @@ class MemberTask
      */
     private $ordertask;
 
+    /**
+     * @ORM\Column(type="boolean")
+     * @Groups({
+     *     "is_active_read",
+     *     "member_get_item",
+     *     "is_active_write"
+     * })
+     */
+    private $isArchieved;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Partner", inversedBy="memberTasks")
+     */
+    private $partner;
+
 
     public function getId(): ?int
     {
@@ -198,6 +236,30 @@ class MemberTask
     public function setOrderTask(int $ordertask): self
     {
         $this->ordertask = $ordertask;
+
+        return $this;
+    }
+
+    public function getIsArchieved(): ?bool
+    {
+        return $this->isArchieved;
+    }
+
+    public function setIsArchieved(bool $isArchieved): self
+    {
+        $this->isArchieved = $isArchieved;
+
+        return $this;
+    }
+
+    public function getPartner(): ?Partner
+    {
+        return $this->partner;
+    }
+
+    public function setPartner(?Partner $partner): self
+    {
+        $this->partner = $partner;
 
         return $this;
     }

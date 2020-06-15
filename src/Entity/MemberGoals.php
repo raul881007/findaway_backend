@@ -18,6 +18,10 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 
+use App\Controller\Member\MemberAddGoalAction;
+use App\Controller\Member\MemberPutGoalAction;
+use App\Controller\Partner\PartnerAddMemberGoalAction;
+
 /**
  * MemberGoals
  *
@@ -42,7 +46,17 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
  *              "denormalization_context"={
  *                  "groups"={"member_get_item"}
  *              },
- *              "controller"=MemberAddTaskAction::class,
+ *              "controller"=MemberAddGoalAction::class,
+ *              "defaults"={"_api_receive"=true},
+ *          },
+ *			"addPartnerToMemberGoal"={
+ *              "access_control"="is_granted('ROLE_PARTNER')",
+ *              "method"="POST",
+ *              "path"="/frontend/partner/profile/goal/add",
+ *              "denormalization_context"={
+ *                  "groups"={"member_get_item"}
+ *              },
+ *              "controller"=PartnerAddMemberGoalAction::class,
  *              "defaults"={"_api_receive"=true},
  *          },
  *     },
@@ -55,7 +69,17 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
  *          },
  *          "delete"={
  *              "access_control"="is_granted('ROLE_MEMBER_GOALS_DELETE')"
- *          }
+ *          },
+ *			"memberPutGoal"={
+ *              "access_control"="is_granted('ROLE_MEMBER')",
+ *              "method"="PUT",
+ *              "path"="/frontend/member/profile/goal/update",
+ *              "normalization_context"={
+ *                  "groups"={"member_put_goal"}
+ *              },
+ *              "controller"=MemberPutGoalAction::class,
+ *              "defaults"={"_api_receive"=false},
+ *          },
  *     })
  * @ApiFilter(DateFilter::class, properties={"createdAt", "updatedAt"})
  * @ApiFilter(SearchFilter::class, properties={
@@ -127,6 +151,7 @@ class MemberGoals
      * @ORM\Column(type="boolean", nullable=true)
      * @Groups({
      *     "is_active_read",
+     *     "member_goals_read",
      *     "member_get_item",
      *     "is_active_write"
      * })
@@ -139,11 +164,28 @@ class MemberGoals
      * @ORM\Column(name="order_goal", type="integer",nullable = true)
      * @Groups({
      *     "is_active_read",
+     *     "member_goals_read",
      *     "member_get_item",
      *     "is_active_write"
      * })
      */
     private $ordergoal;
+
+    /**
+     * @ORM\Column(type="boolean")
+     + @Groups({
+     *     "is_active_read",
+     *     "member_goals_read",
+     *     "member_get_item",
+     *     "is_active_write"
+     * })
+     */
+    private $isArchieved;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Partner", inversedBy="memberGoals")
+     */
+    private $partner;
 
 
     public function getId(): ?int
@@ -195,6 +237,30 @@ class MemberGoals
     public function setOrderGoal(int $ordergoal): self
     {
         $this->ordergoal = $ordergoal;
+
+        return $this;
+    }
+
+    public function getIsArchieved(): ?bool
+    {
+        return $this->isArchieved;
+    }
+
+    public function setIsArchieved(bool $isArchieved): self
+    {
+        $this->isArchieved = $isArchieved;
+
+        return $this;
+    }
+
+    public function getPartner(): ?Partner
+    {
+        return $this->partner;
+    }
+
+    public function setPartner(?Partner $partner): self
+    {
+        $this->partner = $partner;
 
         return $this;
     }

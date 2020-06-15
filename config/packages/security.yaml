@@ -89,14 +89,6 @@ security:
                 authenticators:
                     - lexik_jwt_authentication.jwt_token_authenticator
         
-        frontend_members:
-            pattern:   ^/frontend/members
-            provider: member_provider
-            stateless: true
-            anonymous: false
-            guard:
-                authenticators:
-                    - lexik_jwt_authentication.jwt_token_authenticator
 
         frontend_partner:
             pattern:   ^/frontend/partner/profile
@@ -149,7 +141,6 @@ security:
         - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/frontend/profile, role: ROLE_CLIENT }
         - { path: ^/frontend/member/profile, role: ROLE_MEMBER }
-        - { path: ^/frontend/members, roles: ROLE_MEMBER }
         - { path: ^/frontend/partners, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/frontend/supervisors, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/frontend/partner/profile, role: ROLE_PARTNER }

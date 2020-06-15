@@ -27,6 +27,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     'member_get_notification',
                     'task_read',
                     'member_get_item',
+                    'partner_get_item',
                     'member_put_item',
                     'signup_collection',
                     'partner_read',

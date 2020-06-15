@@ -23,6 +23,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use App\Controller\Member\MemberLoginByTokenCollectionAction;
 use App\Controller\Member\MemberGetItemAction;
 use App\Controller\Member\MemberPutItemController;
+use App\Controller\Member\MemberGetAttributeAction;
 use App\Controller\Member\MemberSignupPostCollectionController;
 use App\Controller\Member\MemberSignupMovPostCollectionController;
 use App\Controller\Member\MemberRemindPasswordCollectionController;
@@ -98,6 +99,15 @@ use App\Controller\SearchAction;
  *          "delete"={
  *              "access_control"="is_granted('ROLE_MEMBER_DELETE')"
  *          },
+			"memberAttribute"={
+ *              "method"="POST",
+ *              "path"="/frontend/member/profile/me/attribute",
+ *              "denormalization_context"={
+ *                  "groups"={"member_put_item"}
+ *              },
+ *              "controller"=MemberGetAttributeAction::class,
+ *              "defaults"={"_api_receive"=true},
+ *          },
  *         
  *          "memberPut"={
  *              "access_control"="is_granted('ROLE_MEMBER')",
@@ -109,6 +119,7 @@ use App\Controller\SearchAction;
  *              "controller"=MemberPutItemController::class,
  *              "defaults"={"_api_receive"=false},
  *          },
+ 
  *          "loginByToken"={
  *              "method"="GET",
  *              "path"="/frontend/member/login/{token}",
@@ -162,6 +173,7 @@ class Member implements MemberInterface, SearchInterface, UserInterface
      *     "member_get_item",
      *     "user_read",
      *     "user_write",
+	 *     "partner_get_item",
      *     "partner_read",
      * })
      */
@@ -177,7 +189,8 @@ class Member implements MemberInterface, SearchInterface, UserInterface
      *     "member_write",
      *	   "member_get_notification",
      *     "task_read",
-     *     "member_get_item",
+     *     "member_get_item",	 
+     *     "partner_get_item",
      *     "member_put_item",
      *     "signup_collection",
      *     "partner_read",
@@ -196,6 +209,7 @@ class Member implements MemberInterface, SearchInterface, UserInterface
      *     "member_write",
      *     "task_read",
      *	   "member_get_notification",
+     *     "partner_get_item",
      *     "member_get_item",
      *     "member_put_item",
      *     "signup_collection",
@@ -215,6 +229,7 @@ class Member implements MemberInterface, SearchInterface, UserInterface
      *     "member_write",
      *     "task_read",
      *     "member_get_item",
+	 *     "partner_get_item",
      *     "member_put_item",
      *     "signup_collection",
      *     "partner_read",
@@ -229,6 +244,7 @@ class Member implements MemberInterface, SearchInterface, UserInterface
      *     "member_read",
      *     "member_write",
      *     "member_get_item",
+	 *     "partner_get_item",
      *     "member_put_item",
      *     "signup_collection",
      * })
@@ -245,6 +261,7 @@ class Member implements MemberInterface, SearchInterface, UserInterface
      *     "member_put_item",
      *     "member_read_collection",
      *     "signup_collection",
+	 *     "partner_get_item",
      *     "partner_read",
      * })
      * @Assert\NotBlank()
@@ -260,6 +277,7 @@ class Member implements MemberInterface, SearchInterface, UserInterface
      * @Groups({
      *     "member_write",
      *     "signup_collection",
+     
      * })
      * @Assert\NotBlank(groups={"signup"})
      */
@@ -408,6 +426,22 @@ class Member implements MemberInterface, SearchInterface, UserInterface
     private $memberNotification;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\MemberProjects", mappedBy="member", orphanRemoval=true)
+      * @Groups({
+     *     "member_read",
+     *     "member_read_collection",
+	 *     "member_get_item",
+     * })
+     * @ORM\OrderBy({"orderProject" = "ASC"})
+     */
+    private $nmemberProjects;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UserConversations", mappedBy="member")
+     */
+    private $userConversations;
+
+    /**
      * Member constructor.
      * @throws \Exception
      */
@@ -416,11 +450,14 @@ class Member implements MemberInterface, SearchInterface, UserInterface
         $this->members = new ArrayCollection();
         $this->memberGoals = new ArrayCollection();
         $this->memberTask = new ArrayCollection();
+		$this->memberProjects = new ArrayCollection();
         $this->memberNotification = new ArrayCollection();
         $this->nGoals = new \Doctrine\Common\Collections\ArrayCollection();
         $this->nTask = new \Doctrine\Common\Collections\ArrayCollection();
         $this->password = \bin2hex(\random_bytes(32));
         $this->memberNotification = new ArrayCollection();
+        $this->nmemberProjects = new ArrayCollection();
+        $this->userConversations = new ArrayCollection();
     }
 
     /**
@@ -644,6 +681,38 @@ class Member implements MemberInterface, SearchInterface, UserInterface
 
         return $this;
     }
+    
+     /**
+     * @return Collection|MemberProject[]
+     */
+    public function getMemberProject(): Collection
+    {
+        return $this->memberProjects;
+    }
+
+    public function addMemberProject(MemberProject $memberProject): self
+    {
+        if (!$this->memberProjects->contains($memberProject)) {
+            $this->memberProjects[] = $memberProject;
+            $memberProject->setMember($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMemberProject(MemberProject $memberProject): self
+    {
+        if ($this->memberProjects->contains($memberProject)) {
+            $this->memberProjects->removeElement($memberProject);
+            // set the owning side to null (unless already changed)
+            if ($memberProject->getMember() === $this) {
+                $memberProject->setMember(null);
+            }
+        }
+
+        return $this;
+    }
+
 
     /**
      * @return Collection|MemberTask[]
@@ -801,6 +870,68 @@ class Member implements MemberInterface, SearchInterface, UserInterface
             // set the owning side to null (unless already changed)
             if ($memberNotification->getMember() === $this) {
                 $memberNotification->setMember(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MemberProjects[]
+     */
+    public function getNmemberProjects(): Collection
+    {
+        return $this->nmemberProjects;
+    }
+
+    public function addNmemberProject(MemberProjects $nmemberProject): self
+    {
+        if (!$this->nmemberProjects->contains($nmemberProject)) {
+            $this->nmemberProjects[] = $nmemberProject;
+            $nmemberProject->setMember($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNmemberProject(MemberProjects $nmemberProject): self
+    {
+        if ($this->nmemberProjects->contains($nmemberProject)) {
+            $this->nmemberProjects->removeElement($nmemberProject);
+            // set the owning side to null (unless already changed)
+            if ($nmemberProject->getMember() === $this) {
+                $nmemberProject->setMember(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserConversations[]
+     */
+    public function getUserConversations(): Collection
+    {
+        return $this->userConversations;
+    }
+
+    public function addUserConversation(UserConversations $userConversation): self
+    {
+        if (!$this->userConversations->contains($userConversation)) {
+            $this->userConversations[] = $userConversation;
+            $userConversation->setMember($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserConversation(UserConversations $userConversation): self
+    {
+        if ($this->userConversations->contains($userConversation)) {
+            $this->userConversations->removeElement($userConversation);
+            // set the owning side to null (unless already changed)
+            if ($userConversation->getMember() === $this) {
+                $userConversation->setMember(null);
             }
         }
 

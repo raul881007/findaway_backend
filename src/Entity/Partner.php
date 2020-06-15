@@ -84,7 +84,7 @@ use JMS\Serializer\Annotation\MaxDepth;
  *              "method"="GET",
  *              "path"="/frontend/partner/profile/me",
  *              "normalization_context"={
- *                  "groups"={"partner_get_item"}
+ *                  "groups"={"partner_get_item","member_get_item","partner_read"}
  *              },
  *              "controller"=PartnerGetItemAction::class,
  *              "defaults"={"_api_receive"=false},
@@ -150,6 +150,7 @@ class Partner implements PartnerInterface, SearchInterface, UserInterface
      *     "partner_read_collection",
      *     "task_read",
      *     "partner_get_item",
+	*      "partner_get_item",
      *     "user_read",
      *     "user_write",
      *     "member_read",
@@ -290,6 +291,7 @@ class Partner implements PartnerInterface, SearchInterface, UserInterface
      * @ORM\ManyToOne(targetEntity="App\Entity\Language")
      * @Groups({
      *     "partner_read",
+	 *     "partner_get_item",
      *     "partner_write"
      * })
      * @Assert\NotNull()
@@ -302,6 +304,7 @@ class Partner implements PartnerInterface, SearchInterface, UserInterface
      * @Groups({
      *     "partner_read",
      *     "partner_read_collection",
+	 *     "partner_get_item",
      * })
      * @ORM\OrderBy({"id" = "ASC"})
      * @Assert\Valid()
@@ -313,6 +316,7 @@ class Partner implements PartnerInterface, SearchInterface, UserInterface
      * @Groups({
      *     "partner_read",
      *     "partner_read_collection",
+	 *     "partner_get_item",
      * })
      * @ORM\OrderBy({"id" = "ASC"})
      * @Assert\Valid()
@@ -323,7 +327,8 @@ class Partner implements PartnerInterface, SearchInterface, UserInterface
      * @ORM\ManyToOne(targetEntity="App\Entity\NAvailable")
      * @Groups({
      *     "partner_read",
-     *     "partner_write"
+     *     "partner_write",
+	 *     "partner_get_item",
      * })
      */
     private $nAvailable;
@@ -340,12 +345,37 @@ class Partner implements PartnerInterface, SearchInterface, UserInterface
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Member", mappedBy="partner")
      * @Groups({
-     *     "partner_read"
+     *     "partner_read",
+	 *     "partner_get_item",
      * })
      * @ORM\OrderBy({"id" = "ASC"})
      * @Assert\Valid()
      */
     private $members;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\UserConversations", mappedBy="partner")
+     * @Groups({
+     *     "partner_read",
+	 *     "partner_get_item",
+     * })
+     */
+    private $userConversations;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\MemberTask", mappedBy="partner")
+     */
+    private $memberTasks;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\MemberGoals", mappedBy="partner")
+     */
+    private $memberGoals;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\MemberProjects", mappedBy="partner")
+     */
+    private $memberProjects;
 
     /**
      * Partner constructor.
@@ -358,6 +388,10 @@ class Partner implements PartnerInterface, SearchInterface, UserInterface
         $this->ratings = new \Doctrine\Common\Collections\ArrayCollection();
         $this->members = new \Doctrine\Common\Collections\ArrayCollection();
         $this->memberNotification = new ArrayCollection();
+        $this->userConversations = new ArrayCollection();
+        $this->memberTasks = new ArrayCollection();
+        $this->memberGoals = new ArrayCollection();
+        $this->memberProjects = new ArrayCollection();
     }
 
     /**
@@ -666,6 +700,130 @@ class Partner implements PartnerInterface, SearchInterface, UserInterface
             // set the owning side to null (unless already changed)
             if ($memberNotification->getPartner() === $this) {
                 $memberNotification->setPartner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|UserConversations[]
+     */
+    public function getUserConversations(): Collection
+    {
+        return $this->userConversations;
+    }
+
+    public function addUserConversation(UserConversations $userConversation): self
+    {
+        if (!$this->userConversations->contains($userConversation)) {
+            $this->userConversations[] = $userConversation;
+            $userConversation->setPartner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserConversation(UserConversations $userConversation): self
+    {
+        if ($this->userConversations->contains($userConversation)) {
+            $this->userConversations->removeElement($userConversation);
+            // set the owning side to null (unless already changed)
+            if ($userConversation->getPartner() === $this) {
+                $userConversation->setPartner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MemberTask[]
+     */
+    public function getMemberTasks(): Collection
+    {
+        return $this->memberTasks;
+    }
+
+    public function addMemberTask(MemberTask $memberTask): self
+    {
+        if (!$this->memberTasks->contains($memberTask)) {
+            $this->memberTasks[] = $memberTask;
+            $memberTask->setPartner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMemberTask(MemberTask $memberTask): self
+    {
+        if ($this->memberTasks->contains($memberTask)) {
+            $this->memberTasks->removeElement($memberTask);
+            // set the owning side to null (unless already changed)
+            if ($memberTask->getPartner() === $this) {
+                $memberTask->setPartner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MemberGoals[]
+     */
+    public function getMemberGoals(): Collection
+    {
+        return $this->memberGoals;
+    }
+
+    public function addMemberGoal(MemberGoals $memberGoal): self
+    {
+        if (!$this->memberGoals->contains($memberGoal)) {
+            $this->memberGoals[] = $memberGoal;
+            $memberGoal->setPartner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMemberGoal(MemberGoals $memberGoal): self
+    {
+        if ($this->memberGoals->contains($memberGoal)) {
+            $this->memberGoals->removeElement($memberGoal);
+            // set the owning side to null (unless already changed)
+            if ($memberGoal->getPartner() === $this) {
+                $memberGoal->setPartner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|MemberProjects[]
+     */
+    public function getMemberProjects(): Collection
+    {
+        return $this->memberProjects;
+    }
+
+    public function addMemberProject(MemberProjects $memberProject): self
+    {
+        if (!$this->memberProjects->contains($memberProject)) {
+            $this->memberProjects[] = $memberProject;
+            $memberProject->setPartner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMemberProject(MemberProjects $memberProject): self
+    {
+        if ($this->memberProjects->contains($memberProject)) {
+            $this->memberProjects->removeElement($memberProject);
+            // set the owning side to null (unless already changed)
+            if ($memberProject->getPartner() === $this) {
+                $memberProject->setPartner(null);
             }
         }
 

@@ -114,6 +114,19 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     'delete' => [
                         'access_control' => 'is_granted(\'ROLE_MEMBER_DELETE\')',
                     ],
+                    'memberAttribute' => [
+                        'method' => 'POST',
+                        'path' => '/frontend/member/profile/me/attribute',
+                        'denormalization_context' => [
+                            'groups' => [
+                                'member_put_item',
+                            ],
+                        ],
+                        'controller' => 'App\\Controller\\Member\\MemberGetAttributeAction',
+                        'defaults' => [
+                            '_api_receive' => true,
+                        ],
+                    ],
                     'memberPut' => [
                         'access_control' => 'is_granted(\'ROLE_MEMBER\')',
                         'method' => 'PUT',

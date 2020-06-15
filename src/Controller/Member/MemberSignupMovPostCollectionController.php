@@ -57,7 +57,9 @@ class MemberSignupMovPostCollectionController extends BaseUserController
             foreach ($params->memberGoals as $mgoals) {
                 $membergoals = new MemberGoals();
                 $membergoals->setName($mgoals);
-                $membergoals->setOrder($order);
+                $membergoals->setOrderGoal($order);
+		        $membergoals->setIsArchieved(false);
+		        $membergoals->setIsCompleted(false);
                 $em->persist($membergoals);
                 $data->addMemberGoal($membergoals);
                 $order++;
@@ -69,7 +71,9 @@ class MemberSignupMovPostCollectionController extends BaseUserController
             foreach ($params->memberTask as $mtasks) {
                 $membertasks = new MemberTask();
                 $membertasks->setName($mtasks);
-                $membertasks->setOrder($order);
+                $membertasks->setOrderTask($order);
+                $membertasks->setIsArchieved(false);
+                $membertasks->setIsCompleted(false);
                 $em->persist($membertasks);
                 $data->addMemberTask($membertasks);
                 $order++;
